@@ -1,0 +1,24 @@
+declared-services:
+  conversation:
+    label: Conversation
+    plan: free
+  BluePic-Cloudant:
+    label: cloudantNoSQLDB
+    plan: Lite
+  Investment-Portfolio-sm:
+    label: InvestmentPortfolio
+  Instrument-Analytics:
+    label: InstrumentAnalytics
+applications:
+- services:
+   - Conversation
+   - BluePic-Cloudant
+   - Investment-Portfolio-sm
+   - InstrumentAnalytics
+  name: portfolio-chat-newbot
+  command: npm start
+  path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 1024M

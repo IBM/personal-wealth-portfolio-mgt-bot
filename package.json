@@ -1,0 +1,50 @@
+{
+  "name": "portfolio-chat",
+  "version": "0.0.1",
+  "description": "Demonstration of a chat-bot for managing a portfolio",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Tom Eck",
+  "contributors": [
+    {
+      "name": "Tom Eck",
+      "email": "tom.eck@ibm.com"
+    }
+  ],
+  "engines": {
+    "node": "4.x"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cfenv": "1.0.x",
+    "cloudant": "^1.7.1",
+    "dotenv": "^4.0.0",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "express-rate-limit": "^2.4.0",
+    "fs": "0.0.1-security",
+    "hashmap": "^2.0.6",
+    "helmet": "^2.1.2",
+    "http": "0.0.0",
+    "memory-cache": "^0.1.6",
+    "numeral": "^2.0.4",
+    "plotly": "^1.0.6",
+    "request-promise": "^4.1.1",
+    "string-template": "^1.0.0",
+    "tmp": "^0.0.31",
+    "twilio": "^2.11.1",
+    "watson-developer-cloud": "^2.21.1",
+    "bluebird": "^3.4.3",
+    "botkit": "^0.2.2",
+    "botkit-sms": "^1.0.7",
+    "bower": "^1.7.9",
+    "cf-deployment-tracker-client": "^0.1.1",
+    "extend": "^3.0.0",
+    "request": "^2.72.0",
+    "use-strict": "^1.0.1",
+    "uuid": "^2.0.2",
+    "object.pick": "^1.1.2"
+  }
+}

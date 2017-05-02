@@ -1,0 +1,150 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Portfolio API's (PROD)",
+		"_postman_id": "f5c5b673-481b-3572-959a-6bfb7fe47c06",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get portfolios (PROD)",
+			"request": {
+				"url": "https://investment-portfolio.mybluemix.net/api/v1/portfolios/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aGluZGVzZXF1YWxsc29tcGFpZGVpcmRsOjNiYmZmMjk2NGJiODJmZmUyZGRkYzI5MTE1MTQ4NzUwM2M1NGQ1NjQ=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create a portfolio (PROD)",
+			"request": {
+				"url": "https://investment-portfolio.mybluemix.net/api/v1/portfolios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-Broker-Api-Version",
+						"value": "2.3",
+						"description": ""
+					},
+					{
+						"key": "X-VCAP-Request-ID",
+						"value": "e81d9e214b9b4a13a843b1da12caa0f4::598af59e-b2b8-4ecd-bdea-b9cf20114509",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aGluZGVzZXF1YWxsc29tcGFpZGVpcmRsOjNiYmZmMjk2NGJiODJmZmUyZGRkYzI5MTE1MTQ4NzUwM2M1NGQ1NjQ=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"P1\",\r\n  \"timestamp\": \"2017-03-14T17:50:08.950Z\",\r\n  \"closed\": false,\r\n  \"data\": {\r\n    \"manager\": \"Tom Eck\",\r\n    \"actingManager\": \"Tom Eck\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Set portfolio holdings  (PROD)",
+			"request": {
+				"url": "https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-Broker-Api-Version",
+						"value": "2.3",
+						"description": ""
+					},
+					{
+						"key": "X-VCAP-Request-ID",
+						"value": "e81d9e214b9b4a13a843b1da12caa0f4::598af59e-b2b8-4ecd-bdea-b9cf20114509",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aGluZGVzZXF1YWxsc29tcGFpZGVpcmRsOjNiYmZmMjk2NGJiODJmZmUyZGRkYzI5MTE1MTQ4NzUwM2M1NGQ1NjQ=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"timestamp\": \"2017-03-14T17:50:08.950Z\",\"holdings\": [{ \"asset\": \"IBM\",\"quantity\": 1500, \"instrumentId\":\"CX_US4592001014_NYQ\"},{ \"asset\": \"GE\",\"quantity\": 900, \"instrumentId\":\"CX_US3696041033_NYQ\"} ]}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get portfolio holdings (PROD)",
+			"request": {
+				"url": "https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aGluZGVzZXF1YWxsc29tcGFpZGVpcmRsOjNiYmZmMjk2NGJiODJmZmUyZGRkYzI5MTE1MTQ4NzUwM2M1NGQ1NjQ=",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update portfolio holdings  (PROD)",
+			"request": {
+				"url": "https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings/2017-03-14T17:50:08.950Z",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aGluZGVzZXF1YWxsc29tcGFpZGVpcmRsOjNiYmZmMjk2NGJiODJmZmUyZGRkYzI5MTE1MTQ4NzUwM2M1NGQ1NjQ=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n      \"holdings\": [\n        {\n          \"asset\": \"IBM\",\n          \"quantity\": 1500,\n          \"instrumentId\": \"CX_US4592001014_NYQ\"\n        },\n        {\n          \"asset\": \"BAC\",\n          \"quantity\": 1800,\n          \"instrumentId\": \"CX_US0605051046_NYS\"\n        },\n        {\n          \"asset\": \"F\",\n          \"quantity\": 5000,\n          \"instrumentId\": \"CX_US3453708600_NYQ\"\n        },\n        {\n          \"asset\": \"GE\",\n          \"quantity\": 5000,\n          \"instrumentId\": \"CX_US3696041033_NYQ\"\n        }\n      ],\n       \"_rev\": \"4-dff67444c7885b2dae42877590fda6b2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
