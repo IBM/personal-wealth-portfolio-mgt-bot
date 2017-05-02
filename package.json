@@ -45,6 +45,7 @@
     "request": "^2.72.0",
     "use-strict": "^1.0.1",
     "uuid": "^2.0.2",
-    "object.pick": "^1.1.2"
+    "object.pick": "^1.1.2",
+    "xmlhttprequest": "^1.4.0"
   }
 }
