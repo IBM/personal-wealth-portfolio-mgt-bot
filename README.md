@@ -71,7 +71,7 @@ Cloudant NoSQL DB
 Launch the **Watson Conversation** tool. Use the **import** icon button on the right
 
 <p align="center">
-  <img width="400" height="55" src="doc/source/images/import_conversation_workspace.png">
+  <img width="400" height="55" src="readme_images/import_conversation_workspace.png">
 </p>
 
 Find the local version of [`resources/workspace.json`](resources/workspace.json) and select
@@ -79,7 +79,7 @@ Find the local version of [`resources/workspace.json`](resources/workspace.json)
 workspace and select **View details**. Save this ID for later.
 
 <p align="center">
-  <img width="400" height="250" src="doc/source/images/open_conversation_menu.png">
+  <img width="400" height="250" src="readme_images/open_conversation_menu.png">
 </p>
 
 *Optionally*, to view the conversation dialog select the workspace and choose the
@@ -95,7 +95,7 @@ i. Start Postman
 ii. Select *Import* and import [`resources/Portfolio API's (PROD).postman_collection`]
 <p align="center">
 # <img width="400" height="250" src="doc/source/images/open_conversation_menu.png">
-  <img width="400" height="250" src="~/2017-NewRole/Journeys/InvestmentPortfolio-chatbot.png">
+  <img width="400" height="250" src="readme_images/InvestmentPortfolio-chatbot.png">
 </p>
 
 iii. Select *Runner*
