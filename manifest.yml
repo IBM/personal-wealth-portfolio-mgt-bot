@@ -7,14 +7,15 @@ declared-services:
     plan: Lite
   Investment-Portfolio-sm:
     label: InvestmentPortfolio
-  Instrument-Analytics:
-    label: InstrumentAnalytics
+  Simulated-Instrument-Analytics:
+    label: SimulatedInstrumentAnalytics
+    plan: free
 applications:
 - services:
    - Conversation
    - BluePic-Cloudant
    - Investment-Portfolio-sm
-   - InstrumentAnalytics
+   - Simulated-Instrument-Analytics
   name: portfolio-chat-newbot
   command: npm start
   path: .
