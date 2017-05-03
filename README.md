@@ -1,11 +1,6 @@
 # Personal wealth portfolio management bot
 
-# uncomment the next lines when set up
-#[![Build Status -
-# Master](https://travis-ci.org/IBM-Swift/BluePic.svg?branch=master)](https://travis-ci.org/IBM-Swift/BluePic)
-#![Bluemix
-
-# Deployments](https://deployment-tracker.mybluemix.net/stats/c45eeb765e77bf2bffd747e8d910e37d/badge.svg)
+###Placeholder for travis-ci
 
 In this developer journey we will create a financial-based Watson Conversation based chatbot
 that allows a user to: 1) use an Investment Portfolio service to query his or her investment portfolios and associated holdings 2) use the Simulated Instrument Analytics service to compute analytics on securities under a given scenario. 3) understand how to swap between alternative interfaces:  a) web interface b) TwilioSMS
@@ -55,7 +50,7 @@ Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 * If you don't want to seed your Investment Portfolio service manually, you can use run the file [`resources/Portfolio API's (PROD).postman_collection`] through the tool: [Postman App](https://www.getpostman.com/).
 * We'll use the file [`resources/conditional_out.csv`] with the Simulated Instrument Analytics Service.
 
-##2 Create the Bluemix services
+## 2 Create Bluemix services
 
 Create the following services:
 
