@@ -1,6 +1,7 @@
-# Personal wealth portfolio management bot
+# Personal Wealth Portfolio Management Bot
 
 ###Placeholder for travis-ci
+[![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
 In this developer journey we will create a financial-based Watson Conversation based chatbot
 that allows a user to: 1) use an Investment Portfolio service to query his or her investment portfolios and associated holdings 2) use the Simulated Instrument Analytics service to compute analytics on securities under a given scenario. 3) understand how to swap between alternative interfaces:  a) web interface b) TwilioSMS
@@ -29,7 +30,9 @@ When the reader has completed this journey, he or she will understand how to:
 **NOTE:** Perform steps 1-8 **OR** click the ``Deploy to Bluemix`` button and hit ``Create`` and then jump to step 7.
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
-.
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/personal-wealth-portfolio-mgt-bot)
+
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create Bluemix services](#2-create-bluemix-services)
 3. [Configure Watson Conversation](#3-configure-watson-conversation)

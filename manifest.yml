@@ -7,9 +7,10 @@ declared-services:
     plan: Lite
   Investment-Portfolio-sm:
     label: InvestmentPortfolio
+    plan: fss-portfolio-service-free-plan
   Simulated-Instrument-Analytics:
     label: SimulatedInstrumentAnalytics
-    plan: free
+    plan: fss-scenario-analytics-service-free-plan
 applications:
 - services:
    - Conversation
