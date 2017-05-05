@@ -57,10 +57,6 @@ Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 
 Create the following services:
 
-Watson Conversation
-Watson Discovery
-Cloudant NoSQL DB
-
 * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
