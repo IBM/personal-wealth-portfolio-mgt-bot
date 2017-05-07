@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node server.js",
     "test-casper-runner": "NODE_ENV=test node casper-runner.js",
-    "test": "npm run test-unit && npm run test-integration && npm run test-casper-runner"
   },
   "author": "Tom Eck",
   "contributors": [
