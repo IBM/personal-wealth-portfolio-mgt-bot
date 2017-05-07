@@ -3,25 +3,5 @@ dist: trusty
 sudo: required
 node_js: 6
 script:
-- npm run test
-cache:
-  directories:
-  - node_modules
-env:
-  global:
-  - CF_APP=personal-wealth-portfolio-mgt-bot
-  - CF_API=https://api.ng.bluemix.net
-  - CF_ORGANIZATION=lbenn@us.ibm.com
-  - CF_SPACE=dev
+- npm test
 before_deploy: npm install -g cf-blue-green
-deploy:
-  provider: script
-  script:
-  - cf-blue-green-travis
-  on:
-    branch: master
-    repo: IBM/personal-wealth-portfolio-mgt-bot
-  skip_cleanup: true
-notifications:
-  email:
-    - lbenn@us.ibm.com
