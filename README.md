@@ -13,9 +13,11 @@ When the reader has completed this journey, he or she will understand how to:
 * Access, seed and send data to the Portfolio Investment Service
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
-###
-###Placeholder for ARCHITECTURE DIAGRAM
-###
+
+Architecture Diagram
+<p align="center">
+  <img width="300" height="125" src="readme_images/ArchitectureDiagram.png">
+</p>
 
 ## Included Components
 - Bluemix Watson Conversation
@@ -53,7 +55,7 @@ Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 * If you don't want to seed your Investment Portfolio service manually, you can use run the file [`resources/Portfolio API's (PROD).postman_collection`] through the tool: [Postman App](https://www.getpostman.com/).
 * We'll use the file [`resources/conditional_out.csv`] with the Simulated Instrument Analytics Service.
 
-## 2 Create Bluemix services
+## 2. Create Bluemix services
 
 Create the following services:
 
@@ -67,11 +69,7 @@ Create the following services:
 ## 3. Configure Watson Conversation
 
 
-Launch the **Watson Conversation** tool. Use the **import** icon button on the right
-
-<p align="center">
-  <img width="400" height="55" src="readme_images/import_conversation_workspace.png">
-</p>
+Launch the **Watson Conversation** tool.
 
 Find the local version of [`resources/workspace.json`](resources/workspace.json) and select
 **Import**. Find the **Workspace ID** by clicking on the context menu of the new
@@ -93,7 +91,7 @@ Using the Postman Tool:
 i. Start Postman
 ii. Select *Import* and import [`resources/Portfolio API's (PROD).postman_collection`]
 <p align="center">
-  <img width="400" height="250" src="readme_images/InvestmentPortfolio-chatbot.png">
+  <img width="250" height="150" src="readme_images/InvestmentPortfolio-chatbot.png">
 </p>
 
 iii. Select *Runner*
@@ -195,7 +193,7 @@ If you used Deploy to Bluemix, most of the setup is automatic, but not quite all
 2. Edit your .env file to add credentials for Twilio. You can get this information from the dashboard when you get a phonen umber for Twilio
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/Twilio-dashboard.png">
+  <img width="200" height="150" src="readme_images/Twilio-dashboard.png">
 </p>
 
   * Set the USE_TWILIO_SMS variable to *true*.
@@ -212,13 +210,13 @@ ngrok http 3000
 You will get a response like the following:
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/ngrok-dashboard.png">
+  <img width="300" height="200" src="readme_images/ngrok-dashboard.png">
 </p>
 
 Copy the https uri and paste it into the entry field for your SMS Webhook:
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/webhook-dashboard.png">
+  <img width="300" height="200" src="readme_images/webhook-dashboard.png">
 </p>
 
 
@@ -322,7 +320,7 @@ Insert the `USERNAME`, `PASSWORD` you obtained from the `Service Credentials` ta
 
   Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
   <p align="center">
-    <img width="400" height="55" src="readme_images/env-vars-BM.png">
+    <img width="400" height="150" src="readme_images/env-vars-BM.png">
   </p>
 
 
