@@ -108,13 +108,13 @@ Alternatively, you can manually seed your Investment Portfolio. For all these st
 
 **NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
 
-i. Create a portfolio entry in your Portfolio Investment Service. Rep
+i. Example of creating a portfolio entry in your Portfolio Investment Service:
 
 `curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' '{service-url}/api/v1/portfolios'`
 
-ii. Create holdings in your entry
+ii. Example of creating holdings in your entry:
 
-`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-02-24T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 36}, { "asset": "LNVGY", "quantity": 520 } ] }' '{service-url}/api/v1/portfolios/P1/holdings'`
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
 
 
 ## 5. Configure Manifest file
@@ -191,16 +191,36 @@ If you used Deploy to Bluemix, most of the setup is automatic, but not quite all
 
 **NOTE:** Using Twilio is an option, the application works with the Web UI by default. So only do the Twilio configuration if you are using Twilio.
 
-1. If you have not done so yet, get a phone number from the Twilio service
+1. If you have not done so yet, get a phone number from the Twilio service. https://www.twilio.com/
 2. Edit your .env file to add credentials for Twilio. You can get this information from the dashboard when you get a phonen umber for Twilio
 
-##include screen image of dashboard
+<p align="center">
+  <img width="400" height="250" src="readme_images/Twilio-dashboard.png">
+</p>
 
-  * Set the USE_TWILIO variable to *true*.
+  * Set the USE_TWILIO_SMS variable to *true*.
   * Set the TWILIO_ACCOUNT_SID variable
   * Set the TWILIO_AUTH_TOKEN variable
 
 If you clicked the "deploy to Bluemix" button, save the new values and restart the application in Bluemix, watch the logs for errors.
+
+In order to have Twilio listen to the local port (:3000), you need to set up a tunnel a webhook. You can use the tool *ngrok* https://ngrok.com/. Go ahead and download ngrok.  Open a terminal window and start ngrok by using the command:
+
+```none
+ngrok http 3000
+```
+You will get a response like the following:
+
+<p align="center">
+  <img width="400" height="250" src="readme_images/ngrok-dashboard.png">
+</p>
+
+Copy the https uri and paste it into the entry field for your SMS Webhook:
+
+<p align="center">
+  <img width="400" height="250" src="readme_images/webhook-dashboard.png">
+</p>
+
 
 
 ##7 Run the Application
@@ -266,7 +286,7 @@ Insert the `USERNAME`, `PASSWORD` you obtained from the `Service Credentials` ta
     TWILIO_API_KEY=
     TWILIO_API_SECRET=
     TWILIO_IPM_SERVICE_SID=
-    TWILIO_NUMBER=+14152124696
+    TWILIO_NUMBER=
 
     #INVESTMENT PORTFOLIO
     CRED_PORTFOLIO_USERID=
@@ -294,8 +314,17 @@ Insert the `USERNAME`, `PASSWORD` you obtained from the `Service Credentials` ta
 * Push the updated application live by running the following command:
 
   ```none
+  cf login
   cf push
   ```
+
+  Before you can actually run the application, you need to manually add the environment variables in bluemix:
+
+  Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
+  <p align="center">
+    <img width="400" height="55" src="readme_images/env-vars-BM.png">
+  </p>
+
 
 # Troubleshooting
 

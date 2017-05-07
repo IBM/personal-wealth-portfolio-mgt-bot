@@ -23,7 +23,6 @@ var bodyParser = require('body-parser');
 var rateLimit = require('express-rate-limit');
 var helmet = require('helmet');
 var port = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
-//var port = process.env.VCAP_APP_PORT || process.env.PORT || 60239;
 var http = require('http').Server(app);
 var debug = require('debug')('bot:server');
 
@@ -37,11 +36,17 @@ app.use('/api/', rateLimit({
   delayMs: 0,
   max: 15
 }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-// Twilio posts XML so that's how we'll parse the incoming request
-//app.use( bodyParser.urlencoded({ extended: true }));
-//app.use(express.static('public'));
+
+
+if (process.env.USE_WEBUI) {
+  app.use(bodyParser.json());
+  app.use(express.static('public'));
+}
+else if (process.env.USE_TWILIO_SMS) {
+  // Twilio posts XML so that's how we'll parse the incoming request
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.static('public'));
+}
 
 // Helper Function to check for environment variables
 var checkAndRequire = function(envItem, toRequire, debugMessage) {
