@@ -99,9 +99,10 @@ To find your workspace ID once training has completed, click the three vertical 
 
 Using the Postman Tool:
 i. Start Postman
-ii. Select *Import* and import [`resources/Portfolio API's (PROD).postman_collection`]
+ii. Select *Import* [`resources/Portfolio API's (PROD).postman_collection`]
+
 <p align="center">
-  <img width="250" height="150" src="readme_images/InvestmentPortfolio-chatbot.png">
+  <img width="250" height="150" src="readme_images/Postman-import.png">
 </p>
 
 iii. Select *Runner*
@@ -208,7 +209,7 @@ You still have one more step if you are planning to use Twilio as the interface.
 **NOTE:** Using Twilio is an option, the application works with the Web UI by default. So only do the Twilio configuration if you are using Twilio.
 
 1. If you have not done so yet, get a phone number from the Twilio service. https://www.twilio.com/
-2. Edit your .env file to add credentials for Twilio. You can get this information from the dashboard when you get a phonenumber for Twilio
+2. Edit your .env file to add credentials for Twilio. You can get this information from the dashboard when you get a phone number for Twilio
 
 <p align="center">
   <img width="300" height="250" src="readme_images/Twilio-dashboard.png">
