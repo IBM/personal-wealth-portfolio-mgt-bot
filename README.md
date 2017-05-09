@@ -270,7 +270,7 @@ npm start
 
 ### If you decided to push your application to Bluemix
 
-* Push the updated application live by running the following command:
+* If you didn't select the "Deploy to Bluemix button" and you want to run your application in Bluemix, push the updated application live by running the following command:
 
   ```none
   cf api https://api.ng.bluemix.net
@@ -278,7 +278,7 @@ npm start
   cf push
   ```
 
-  Before you can actually run the application, you need to manually add the environment variables in bluemix:
+  Before you can actually run the application, you need to manually add the environment variables in Bluemix:
 
   Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
 
