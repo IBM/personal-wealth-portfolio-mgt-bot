@@ -9,7 +9,7 @@ When the reader has completed this journey, he or she will understand how to:
 
 * Create a chatbot dialog with Watson Conversation
 * Set up multiple interfaces with the Watson Conversation bot: Web & Twilio
-* Access, seed and send data to the Portfolio Investment Service
+* Access, seed and send data to the Investment Portfolio Service
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
 <p align="center">
@@ -19,7 +19,7 @@ When the reader has completed this journey, he or she will understand how to:
 ## Included Components
 - Bluemix Watson Conversation
 - Bluemix Cloudant NoSQL DB
-- Bluemix Portfolio Investment
+- Bluemix Investment Portfolio
 - Bluemix Simulated Instrument Analytics
 - TwilioSMS
 - Node
@@ -35,7 +35,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create Bluemix services](#2-create-bluemix-services)
 3. [Configure Watson Conversation](#3-configure-watson-conversation)
-4. [Configure and Seed the Portfolio Investment](#4-configure-portfolio-investment)
+4. [Configure and Seed the Investment Portfolio](#4-configure-investment-portfolio)
 5. [Configure Manifest.yml file](#5-configure-manifest)
 6. [Configure .env file](#6-configure-dotenv)
 7. [Configure Twilio](#7-configure-twilio)
@@ -95,7 +95,7 @@ To find your workspace ID once training has completed, click the three vertical 
   <img width="400" height="250" src="readme_images/dialog.png">
 </p>
 
-## 4. Configure and Seed the Portfolio Investment Service
+## 4. Configure and Seed the Investment Portfolio  Service
 
 Using the Postman Tool:
 i. Start Postman
