@@ -61,7 +61,9 @@ Create the following services:
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-**Note** For each service with the exception of Cloudant, record the userid, password and URL from the credentials tab.
+**Note**
+* Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
+* Record the userid, password from the credentials tab on the Conversation Service.
 
 ## 3. Configure Watson Conversation
 
@@ -97,8 +99,10 @@ To find your workspace ID once training has completed, click the three vertical 
 
 ## 4. Configure and Seed the Investment Portfolio  Service
 
-Using the Postman Tool:
+Using the free Postman Tool (https://www.getpostman.com/):
+
 i. Start Postman
+
 ii. Select *Import* [`resources/Portfolio API's (PROD).postman_collection`]
 
 <p align="center">
@@ -119,7 +123,11 @@ Alternatively, you can manually seed your Investment Portfolio. For all these st
 
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
-`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' '{service-url}/api/v1/portfolios'`
+**NOTE**
+* service-user-id is the user id associated with your Portfolio Investment Service
+* service-user_password is the password associated with your Portfolio Investment Service
+
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios'`
 
 ii. Example of manually creating holdings in your entry:
 
@@ -160,11 +168,14 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
 
 1. Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
+**NOTE** Most files systems regard files with a "." at the front as hidden files.  If you are on a Windows system, you should be able to use either [GitBash](https://git-for-windows.github.io/) or [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
+
+
   ```none
   cp .env.example .env
   ```
 
-  You will need to update the credentials with the Bluemix credentials for each of the services you created previously.
+  You will need to update the credentials with the Bluemix credentials for each of the services you created in [Step 2](#2-create-bluemix-services).
 
     The `.env` file will look something like the following:
 
@@ -202,9 +213,9 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     ```
 
 
-## 7. Configure Twilio
+## 7. Configure Twilio (Optional if you want your app to interface with Twilio)
 
-You still have one more step if you are planning to use Twilio as the interface. We have to update a couple more environment variables.
+You still have one more step if you are planning to use Twilio as the interface. We have to update a couple more environment variables. Again - this is an optional step. By default the app interfaces with a WebUI; but this enables an interface with Twilio.
 
 **NOTE:** Using Twilio is an option, the application works with the Web UI by default. So only do the Twilio configuration if you are using Twilio.
 
