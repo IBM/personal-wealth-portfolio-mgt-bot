@@ -2,13 +2,13 @@ declared-services:
   conversation:
     label: Conversation
     plan: free
-  BluePic-Cloudant:
+  cloudant:
     label: cloudantNoSQLDB
     plan: Lite
 applications:
 - services:
-   - Conversation
-   - Cloudant
+   - conversation
+   - cloudant
   name: portfolio-chat-newbot
   command: npm start
   path: .
