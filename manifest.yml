@@ -6,10 +6,10 @@ declared-services:
     label: cloudantNoSQLDB
     plan: Lite
   Investment-Portfolio:
-    label: InvestmentPortfolio
+    label: Investment_Portfolio
     plan: free
   Simulated-Instrument-Analytics:
-    label: SimulatedInstrumentAnalytics
+    label: Simulated_Instrument_Analytics
     plan: free
 applications:
 - services:
