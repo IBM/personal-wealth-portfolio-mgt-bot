@@ -5,18 +5,10 @@ declared-services:
   BluePic-Cloudant:
     label: cloudantNoSQLDB
     plan: Lite
-  Investment-Portfolio:
-    label: Investment_Portfolio
-    plan: free
-  Simulated-Instrument-Analytics:
-    label: Simulated_Instrument_Analytics
-    plan: free
 applications:
 - services:
    - Conversation
-   - BluePic-Cloudant
-   - Investment-Portfolio
-   - Simulated-Instrument-Analytics
+   - Cloudant
   name: portfolio-chat-newbot
   command: npm start
   path: .
