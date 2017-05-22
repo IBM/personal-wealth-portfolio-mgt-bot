@@ -1,14 +1,22 @@
 declared-services:
-  conversation:
-    label: Conversation
-    plan: free
-  cloudant:
+  Cloudant-service:
     label: cloudantNoSQLDB
     plan: Lite
+  Conversation-service:
+    label: conversation
+    plan: free
+  Investment-Portfolio:
+    label: InvestmentPortfolio
+    plan: free
+  Simulated-Instrument-Analytics:
+    label: SimulatedInstrumentAnalytics
+    plan: free
 applications:
 - services:
-   - conversation
-   - cloudant
+   - Conversation-service
+   - Cloudant-service
+   - Investment-Portfolio
+   - Simulated-Instrument-Analytics
   name: portfolio-chat-newbot
   command: npm start
   path: .
