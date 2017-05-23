@@ -6,11 +6,11 @@ declared-services:
     label: conversation
     plan: free
   Investment-Portfolio:
-    label: InvestmentPortfolio
-    plan: free
+    label: fss-portfolio-service
+    plan: fss-portfolio-service-free-plan
   Simulated-Instrument-Analytics:
-    label: SimulatedInstrumentAnalytics
-    plan: free
+    label: fss-scenario-analytics-service
+    plan: fss-scenario-analytics-service-free-plan
 applications:
 - services:
    - Conversation-service
