@@ -13,7 +13,7 @@ When the reader has completed this journey, he or she will understand how to:
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
 <p align="center">
-  <img width="600" height="400" src="readme_images/arch-fin-mgmt.png">
+  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
 </p>
 
 ## Included Components
@@ -25,7 +25,7 @@ When the reader has completed this journey, he or she will understand how to:
 
 ## Steps
 
-Use the [``Deploy to Bluemix``](Deploy to Bluemix) button **OR** create the services and run [``Run Locally``](Running Application Locally).
+Use the [Deploy to Bluemix](Deploy to Bluemix) button **OR** create the services and run [Run Locally](Running Application Locally).
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
