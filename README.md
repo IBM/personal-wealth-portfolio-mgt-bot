@@ -25,7 +25,7 @@ When the reader has completed this journey, he or she will understand how to:
 
 ## Steps
 
-Use the [Deploy to Bluemix](Deploy-to-Bluemix) button **OR** create the services and run [Run-Locally](Running Application Locally).
+Use the ``Deploy to Bluemix`` button **OR** create the services and run ``Run Locally``.
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
@@ -77,8 +77,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
-To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables file “.env”. Save this id to enter in your .env file later in the instructions.
-
+To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
 
@@ -109,8 +108,6 @@ This will create add holdings and their instruments to your Investment Portfolio
 
 Alternatively, you can manually seed your Investment Portfolio. For all these steps - replace userid, password and service url with the credentials from your BlueMix Service.
 
-**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
-
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
 **NOTE**
@@ -138,17 +135,19 @@ Click **Save** to redeploy your application.
 Now you are ready to run your application from Bluemix. Select the URL
 ![](readme_images/runningappurl.png)
 
+**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
+
 # Running Application Locally
 > NOTE: These steps are only needed when running locally instead of using the ``Deploy to Bluemix`` button
 
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create Bluemix services](#2-create-bluemix-services)
 3. [Configure Watson Conversation](#5-configure-watson-conversation)
-4. [Configure and Seed the Investment Portfolio](#4-configure-investment-portfolio)
-5. [Configure Manifest.yml file](#5-configure-manifest)
-6. [Configure .env file](#6-configure-dotenv)
-7. [Update ``controller.js`` file](#7-update-file)
-8. [Run the application](#8-Run-application)
+4. [Configure and Seed the Investment Portfolio](#3-configure-investment-portfolio)
+5. [Configure Manifest.yml file](#4-configure-manifest)
+6. [Configure .env file](#5-configure-dotenv)
+7. [Update ``controller.js`` file](#6-update-file)
+8. [Run the application](#7-Run-application)
 
 
 ## 1. Clone the repo
@@ -170,7 +169,7 @@ Create the following services:
 * Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
 * Record the userid, password from the credentials tab on the Conversation Service.
 
-## 3. Configure Manifest file
+## 3. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
@@ -200,7 +199,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     disk_quota: 1024M
     ```
 
-## 6. Configure .env file
+## 4. Configure .env file
 
 1. Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
@@ -248,12 +247,12 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     TWILIO_NUMBER=
     ```
 
-## 7. Update file
+## 5. Update file
 
 One additional step is that you need to comment out two lines in the Controller file to set the userid & password of the investment portfolio service (lines 66-70)
 ![](readme_images/commentlines.png)
 
-## 8. Run Application
+## 6. Run Application
 
 a. Install the dependencies you application need:
 
