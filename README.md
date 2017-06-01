@@ -276,9 +276,9 @@ c. Test your application by going to: [http://localhost:3000/](http://localhost:
 
 
     Start a conversation with your bot:
-    <p align="center">
-      <img width="300" height="200" src="./readme_images/conversationsample.png">
-    </p>
+<p align="center">
+      <img width="300" height="200" src="readme_images/conversationsample.png">
+</p>
 
 
 ## Configure Twilio (Optional if you want your app to interface with Twilio)
