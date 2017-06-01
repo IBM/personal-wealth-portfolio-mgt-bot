@@ -143,11 +143,11 @@ Now you are ready to run your application from Bluemix. Select the URL
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create Bluemix services](#2-create-bluemix-services)
 3. [Configure Watson Conversation](#3-configure-watson-conversation)
-4. [Configure and Seed the Investment Portfolio](#4-configure-investment-portfolio)
+4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
 5. [Configure Manifest file](#5-configure-manifest)
 6. [Configure .env file](#6-configure-dotenv)
 7. [Update ``controller.js`` file](#7-update-file)
-8. [Run the application](#8-Run-application)
+8. [Run the application](#8-run-application)
 
 
 ## 1. Clone the repo
@@ -171,7 +171,7 @@ Create the following services:
 
 ## 3. Configure Watson Conversation
 
-## 4. Configure and Seed the Investment Portfolio
+## 4. Seed Investment Portfolio
 
 ## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
@@ -203,7 +203,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     disk_quota: 1024M
     ```
 
-## 6. Configure .env file
+## 6. Configure dotenv file
 
 1. Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
