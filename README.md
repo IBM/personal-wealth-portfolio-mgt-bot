@@ -25,7 +25,7 @@ When the reader has completed this journey, he or she will understand how to:
 
 ## Steps
 
-Use the [Deploy to Bluemix](Deploy to Bluemix) button **OR** create the services and run [Run Locally](Running Application Locally).
+Use the [Deploy to Bluemix](Deploy-to-Bluemix) button **OR** create the services and run [Run-Locally](Running Application Locally).
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
