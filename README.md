@@ -13,7 +13,7 @@ When the reader has completed this journey, he or she will understand how to:
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
 <p align="center">
-  <img width="400" height="300" src="readme_images/ArchitectureDiagram.png">
+  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
 </p>
 
 ## Included Components
@@ -22,55 +22,44 @@ When the reader has completed this journey, he or she will understand how to:
 - Bluemix Investment Portfolio
 - Bluemix Simulated Instrument Analytics
 - TwilioSMS
-- Node
 
 ## Steps
 
-**NOTE:** Perform steps 1-8 **OR** click the ``Deploy to Bluemix`` button and hit ``Create`` and then jump to step 7.
+Use the ``Deploy to Bluemix`` button **OR** create the services and run ``Run Locally``.
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/ibm/personal-wealth-portfolio-mgt-bot)
 
-1. [Clone the repo](#1-clone-the-repo)
-2. [Create Bluemix services](#2-create-bluemix-services)
-3. [Configure Watson Conversation](#3-configure-watson-conversation)
-4. [Configure and Seed the Investment Portfolio](#4-configure-investment-portfolio)
-5. [Configure Manifest.yml file](#5-configure-manifest)
-6. [Configure .env file](#6-configure-dotenv)
-7. [Configure Twilio](#7-configure-twilio)
-8. [Run the application](#8-run-the-application)
+## Deploy to Bluemix
 
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/ljbennett62/personal-wealth-portfolio-mgt-bot)
 
-## 1. Clone the repo
+1. Log in to your Bluemix account before deploying. If already logged in, then ignore this step.
+![](readme_images/bm-deploy-img.png)
 
-Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
+2. We can see that the app is ready to be deployed, and we need to ensure that the App name, region, Organization, Space is valid before pressing 'Deploy'.
+![](readme_images/bm-deploy-step2.png)
 
-  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
+3. In Toolchain, the app is deployed. There are also option to edit code via eclipseIDE, git changes if required.
+![](readme_images/bm-deploy-step3.png)
 
-* We’ll be using the file [`resources/workspace.json`] with the Conversation Service.
-* If you don't want to seed your Investment Portfolio service manually, you can use run the file [`resources/Portfolio API's (PROD).postman_collection`] through the tool: [Postman App](https://www.getpostman.com/).
-* We'll use the file [`resources/conditional_out.csv`] with the Simulated Instrument Analytics Service.
+4. You should see two stages pass successfully once your **Deploy Stage** completes
+![](readme_images/bm-deploy-step4.png)
 
-## 2. Create Bluemix services
+5. To see the app and services created and configured for this journey, use the Bluemix dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
 
-Create the following services:
+ * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
+ * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
+ * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
-* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
-* [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
-* [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
+**Note** There are a few more steps you need to complete before you can run the application.
 
-**Note**
-* Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
-* Record the userid, password from the credentials tab on the Conversation Service.
-
-## 3. Configure Watson Conversation
-
+## A. Configure Watson Conversation
 
 The Conversation service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
 
-  1. Login to Bluemix
+  1. Make sure you are logged into Bluemix
 
   2. Navigate to upper left hand side and click on the 3 parallel lines and select Dashboard from the left hand navigation panel.
 
@@ -88,8 +77,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
-To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables file “.env”. Save this id to enter in your .env file later in the instructions.
-
+To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
 
@@ -97,29 +85,28 @@ To find your workspace ID once training has completed, click the three vertical 
   <img width="400" height="250" src="readme_images/dialog.png">
 </p>
 
-## 4. Configure and Seed the Investment Portfolio  Service
+
+## B. Seed the Investment Portfolio Service
+
+If you don't want to seed your Investment Portfolio service manually, you can use run the file [`resources/Portfolio API's (PROD).postman_collection`] through the tool: [Postman App](https://www.getpostman.com/).
+* We'll use the file [`resources/conditional_out.csv`] with the Simulated Instrument Analytics Service.
 
 Using the free Postman Tool (https://www.getpostman.com/):
 
-i. Start Postman
+1. Start Postman
 
-ii. Select *Import* [`resources/Portfolio API's (PROD).postman_collection`]
+2. Select *Import* [`resources/Portfolio API's (PROD).postman_collection`]
+![](readme_images/Postman-import.png)
 
-<p align="center">
-  <img width="250" height="150" src="readme_images/Postman-import.png">
-</p>
+3. Select *Runner*
 
-iii. Select *Runner*
+4. Select the [`resources/Portfolio API's (PROD).postman_collection`] from the dropdown
 
-iv. Select the [`resources/Portfolio API's (PROD).postman_collection`] from the dropdown
-
-v. Select Start Run
+5. Select Start Run
 
 This will create add holdings and their instruments to your Investment Portfolio
 
 Alternatively, you can manually seed your Investment Portfolio. For all these steps - replace userid, password and service url with the credentials from your BlueMix Service.
-
-**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
 
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
@@ -134,7 +121,61 @@ ii. Example of manually creating holdings in your entry:
 `curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
 
 
-## 5. Configure Manifest file
+## C. Configuring your Environment Variables in Bluemix
+Before you can actually run the application, you need to manually update three environment variables in Bluemix:
+
+Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
+
+**Note** you will use your own workspace ID value
+![](readme_images/environment-vars.png)
+
+Click **Save** to redeploy your application.
+
+## D. Running application from Bluemix
+Now you are ready to run your application from Bluemix. Select the URL
+![](readme_images/runningappurl.png)
+
+**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
+
+# Running Application Locally
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to Bluemix`` button
+
+1. [Clone the repo](#1-clone-the-repo)
+2. [Create Bluemix services](#2-create-bluemix-services)
+3. [Configure Watson Conversation](#3-configure-watson-conversation)
+4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
+5. [Configure Manifest file](#5-configure-manifest)
+6. [Configure .env file](#6-configure-env-file)
+7. [Update ``controller.js`` file](#7-update-file)
+8. [Run the application](#8-run-application)
+
+
+## 1. Clone the repo
+
+Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
+
+  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
+
+## 2. Create Bluemix services
+
+Create the following services:
+
+* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
+* [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
+* [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
+
+**Note**
+* Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
+* Record the userid, password from the credentials tab on the Conversation Service.
+
+## 3. Configure Watson Conversation
+> NOTE: Execute section A of the ``Deploy to Bluemix`` section
+
+## 4. Seed Investment Portfolio
+> NOTE: Execute section B of the ``Deploy to Bluemix`` section
+
+## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
@@ -142,19 +183,19 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     conversation:
        label: Conversation
        plan: free
-    BluePic-Cloudant:
+    Cloudant-service:
        label: cloudantNoSQLDB
        plan: Lite
-    Investment-Portfolio-sm:
-       label: InvestmentPortfolio
-    Instrument-Analytics:
-       label: InstrumentAnalytics
+    investment-portfolio-service:
+       label: fss-portfolio-service
+    instrument-analytics:
+       label: fss-scenario-analytics-service
     applications:
         - services:
         - Conversation
-        - BluePic-Cloudant
-        - Investment-Portfolio-sm
-       - InstrumentAnalytics
+        - Cloudant-service
+        - investment-portfolio-service
+        - instrument-analytics-service
     name: portfolio-chat-newbot
     command: npm start
     path: .
@@ -212,8 +253,35 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     TWILIO_NUMBER=
     ```
 
+## 7. Update file
 
-## 7. Configure Twilio (Optional if you want your app to interface with Twilio)
+One additional step is that you need to comment out two lines in the Controller file to set the userid & password of the investment portfolio service (lines 66-70)
+![](readme_images/commentlines.png)
+
+## 8. Run Application
+
+a. Install the dependencies you application need:
+
+```none
+npm install
+```
+
+b. Start the application locally:
+
+```none
+npm start
+```
+
+c. Test your application by going to: [http://localhost:3000/](http://localhost:3000/)
+
+
+    Start a conversation with your bot:
+    <p align="center">
+      <img width="300" height="200" src="./readme_images/conversationsample.png">
+    </p>
+
+
+## Configure Twilio (Optional if you want your app to interface with Twilio)
 
 You still have one more step if you are planning to use Twilio as the interface. We have to update a couple more environment variables. Again - this is an optional step. By default the app interfaces with a WebUI; but this enables an interface with Twilio.
 
@@ -254,48 +322,6 @@ Copy the https uri and paste it into the entry field for your SMS Webhook (insid
 </p>
 
 
-
-## 8 Run the Application
-
-### If you decided to run the app locally...
-
-1. Install the dependencies you application need:
-
-```none
-npm install
-```
-
-2. Start the application locally:
-
-```none
-npm start
-```
-
-3. Test your application by going to: [http://localhost:3000/](http://localhost:3000/)
-
-
-    Start a conversation with your bot:
-    <p align="center">
-      <img width="300" height="200" src="./readme_images/conversationsample.png">
-    </p>
-
-### If you decided to push your application to Bluemix
-
-* If you didn't select the "Deploy to Bluemix button" and you want to run your application in Bluemix, push the updated application live by running the following command:
-
-  ```none
-  cf api https://api.ng.bluemix.net
-  cf login
-  cf push
-  ```
-
-  Before you can actually run the application, you need to manually add the environment variables in Bluemix:
-
-  Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
-
-  <p align="center">
-    <img width="400" height="150" src="readme_images/env-vars-BM.png">
-  </p>
 
 # Adapting/Extending the Journey
 
