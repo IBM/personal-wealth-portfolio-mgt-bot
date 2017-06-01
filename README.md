@@ -142,12 +142,12 @@ Now you are ready to run your application from Bluemix. Select the URL
 
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create Bluemix services](#2-create-bluemix-services)
-3. [Configure Watson Conversation](#5-configure-watson-conversation)
-4. [Configure and Seed the Investment Portfolio](#3-configure-investment-portfolio)
-5. [Configure Manifest.yml file](#4-configure-manifest)
-6. [Configure .env file](#5-configure-dotenv)
-7. [Update ``controller.js`` file](#6-update-file)
-8. [Run the application](#7-Run-application)
+3. [Configure Watson Conversation](#3-configure-watson-conversation)
+4. [Configure and Seed the Investment Portfolio](#4-configure-investment-portfolio)
+5. [Configure Manifest file](#5-configure-manifest)
+6. [Configure .env file](#6-configure-dotenv)
+7. [Update ``controller.js`` file](#7-update-file)
+8. [Run the application](#8-Run-application)
 
 
 ## 1. Clone the repo
@@ -169,7 +169,11 @@ Create the following services:
 * Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
 * Record the userid, password from the credentials tab on the Conversation Service.
 
-## 4. Configure Manifest
+## 3. Configure Watson Conversation
+
+## 4. Configure and Seed the Investment Portfolio
+
+## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
@@ -199,7 +203,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     disk_quota: 1024M
     ```
 
-## 4. Configure .env file
+## 6. Configure .env file
 
 1. Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
@@ -247,12 +251,12 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     TWILIO_NUMBER=
     ```
 
-## 5. Update file
+## 7. Update file
 
 One additional step is that you need to comment out two lines in the Controller file to set the userid & password of the investment portfolio service (lines 66-70)
 ![](readme_images/commentlines.png)
 
-## 6. Run Application
+## 8. Run Application
 
 a. Install the dependencies you application need:
 
