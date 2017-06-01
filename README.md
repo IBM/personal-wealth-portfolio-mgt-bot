@@ -145,7 +145,7 @@ Now you are ready to run your application from Bluemix. Select the URL
 3. [Configure Watson Conversation](#3-configure-watson-conversation)
 4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
 5. [Configure Manifest file](#5-configure-manifest)
-6. [Configure .env file](#6-configure-env)
+6. [Configure env file](#6-configure-env)
 7. [Update ``controller.js`` file](#7-update-file)
 8. [Run the application](#8-run-application)
 
