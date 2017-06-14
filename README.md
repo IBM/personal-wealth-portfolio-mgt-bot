@@ -81,7 +81,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
-**<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#C-Configuring-your-Environment-Variables-in-Bluemix).
+**<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#c-configuring-your-environment-variables-in-bluemix).
 
 To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
