@@ -114,7 +114,7 @@ Before you can actually run the application, you need to manually update three e
 
 Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
 
-**<span style="color:red">Note:</span>** Replace the `Value` for Workspace ID with the one you noted in [Step A](#A-Configure-Watson-Conversation).
+**<span style="color:red">Note:</span>** Replace the `Value` for Workspace ID with the one you noted in [Step A](#a-configure-watson-conversation).
 
 
 | Name                                                  | Value                                |
