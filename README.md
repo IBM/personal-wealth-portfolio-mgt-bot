@@ -55,6 +55,12 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 **Note** There are a few more steps you need to complete before you can run the application.
 
+Before you start the configuration process:
+
+Clone the `personal-wealth-portfoli-mgt-bot` code locally. In a terminal window, run:
+
+  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
+
 ## A. Configure Watson Conversation
 
 The Conversation service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
@@ -77,6 +83,8 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
+**Note:** Record your Workspace ID to use in [Step C](#C-Configuring-your-Environment-Variables-in-Bluemix).
+
 To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
@@ -88,31 +96,13 @@ To find your workspace ID once training has completed, click the three vertical 
 
 ## B. Seed the Investment Portfolio Service
 
-If you don't want to seed your Investment Portfolio service manually, you can use run the file [`resources/Portfolio API's (PROD).postman_collection`] through the tool: [Postman App](https://www.getpostman.com/).
-* We'll use the file [`resources/conditional_out.csv`] with the Simulated Instrument Analytics Service.
-
-Using the free Postman Tool (https://www.getpostman.com/):
-
-1. Start Postman
-
-2. Select *Import* [`resources/Portfolio API's (PROD).postman_collection`]
-![](readme_images/Postman-import.png)
-
-3. Select *Runner*
-
-4. Select the [`resources/Portfolio API's (PROD).postman_collection`] from the dropdown
-
-5. Select Start Run
-
-This will create add holdings and their instruments to your Investment Portfolio
-
-Alternatively, you can manually seed your Investment Portfolio. For all these steps - replace userid, password and service url with the credentials from your BlueMix Service.
+You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password and service url** with the credentials from your BlueMix Service.
 
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
 **NOTE**
-* service-user-id is the user id associated with your Portfolio Investment Service
-* service-user_password is the password associated with your Portfolio Investment Service
+* {service-user-id} is the user id associated with your Portfolio Investment Service
+* {service-user_password} is the password associated with your Portfolio Investment Service
 
 `curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios'`
 
@@ -124,10 +114,16 @@ ii. Example of manually creating holdings in your entry:
 ## C. Configuring your Environment Variables in Bluemix
 Before you can actually run the application, you need to manually update three environment variables in Bluemix:
 
-Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and add the following environment variables:
+Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
 
-**Note** you will use your own workspace ID value
-![](readme_images/environment-vars.png)
+**Note** Replace the `Value` for Workspace ID with the one you noted in [Step A](#A-Configure-Watson-Conversation).
+
+
+| Name                                                  | Value                                |
+|-------------------------------------------------------|--------------------------------------|
+| WORKSPACE_ID                                          | 5b4d1d87-a712-4b24-be39-e7090421b014 |
+| USE_WEBUI                                             | true                                 |
+| CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv     |
 
 Click **Save** to redeploy your application.
 
