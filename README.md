@@ -55,9 +55,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 **Note** There are a few more steps you need to complete before you can run the application.
 
-Before you start the configuration process:
-
-Clone the `personal-wealth-portfoli-mgt-bot` code locally. In a terminal window, run:
+Before you start the configuration process, clone the `personal-wealth-portfoli-mgt-bot` code locally. In a terminal window, run:
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
@@ -83,7 +81,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
-**Note:** Record your Workspace ID to use in [Step C](#C-Configuring-your-Environment-Variables-in-Bluemix).
+**<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#C-Configuring-your-Environment-Variables-in-Bluemix).
 
 To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
@@ -96,7 +94,7 @@ To find your workspace ID once training has completed, click the three vertical 
 
 ## B. Seed the Investment Portfolio Service
 
-You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password and service url** with the credentials from your BlueMix Service.
+You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password** with the credentials from your BlueMix Service.
 
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
@@ -116,7 +114,7 @@ Before you can actually run the application, you need to manually update three e
 
 Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
 
-**Note** Replace the `Value` for Workspace ID with the one you noted in [Step A](#A-Configure-Watson-Conversation).
+**<span style="color:red">Note:</span>** Replace the `Value` for Workspace ID with the one you noted in [Step A](#A-Configure-Watson-Conversation).
 
 
 | Name                                                  | Value                                |
