@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
+*다른 언어로 보기: [English](README.md).*
+
 이번 개발 과정에서는 사용자가 1) Investment Portfolio 서비스를 사용하여 투자 포트폴리오 및 관련 보유 주식을 조회하고 2) Simulated Instrument Analytics 서비스를 사용하여 특정 시나리오에서 주식 분석을 실행하고 3) 웹 인터페이스와 TwilioSMS 같은 인터페이스 상에서 Watson Conversation 기반의 금융 전문 챗봇을 사용할 수 있는 환경을 만들어보겠습니다.
 
 이 과정을 마치면 다음 방법을 이해할 수 있습니다:
