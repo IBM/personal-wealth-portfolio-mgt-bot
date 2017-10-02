@@ -1,0 +1,48 @@
+{
+  "name": "Create an investment management chatbot",
+  "description": "Create a service-based chatbot to manage a personal wealth portfolio",
+  "thumbnailURL": "blueprint/thumbnail.svg",
+  "appIconURL": "blueprint/appicon.svg",
+  "previewURLs": [],
+  "type": "WEB",
+  "tags": [
+    "mobile",
+    "watson",
+    "finance"
+  ],
+  "generators": {
+    "node": [
+      "generator-starterkit-content-downloader",
+      "generator-ibm-cloud-enablement"
+    ]
+  },
+  "generatorOptions": {
+    "generator-starterkit-content-downloader": {
+      "registry": "https://npm-registry.whitewater.ibm.com",
+      "scope": "@arf",
+      "version": "latest"
+    },
+    "generator-ibm-cloud-enablement": {
+      "version": "latest"
+    }
+  },
+  "requiredCapabilities": [
+    "cloudant",
+    "conversation",
+    "simulatedInstrumentAnalytics",
+    "investmentPortfolio"
+  ],
+  "requiredCapabilitiesURLs": {
+    "cloudant": "https://console.bluemix.net/catalog/services/cloudant-nosql-db",
+    "conversation": "https://console.bluemix.net/catalog/services/conversation",
+    "simulatedInstrumentAnalytics": "https://console.bluemix.net/docs/services/SimulatedInstrumentAnalytics",
+    "investmentPortfolio": "https://console.bluemix.net/docs/services/InvestmentPortfolio"
+  },
+  "servicePlans": {
+    "cloudant": "Lite",
+    "conversation": "free",
+    "simulatedInstrumentAnalytics": "fss-scenario-analytics-service-free-plan",
+    "investmentPortfolio": "fss-portfolio-service-free-plan"
+  },
+  "email": "cloud@us.ibm.com"
+}
