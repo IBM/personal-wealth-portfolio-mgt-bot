@@ -1,384 +1,364 @@
-﻿# 使用 Jupyter Notebook 分析《星际争霸 II》录像
+﻿# 个人财富组合管理机器人
 
-在这个 developer journey 中，我们将使用 Jupyter Notebook 分析
-《星际争霸 II》录像回放并提取重要洞察。
+[![构建状态](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
-读者学习完这个 journey ，将会掌握如何：
+*阅读本文的其他语言版本：[한국어](README-ko.md)。*
 
-* 在 DSX 中创建并运行 Jupyter Notebook。
-* 使用 DSX Object Storage 访问录像回放文件。
-* 使用 sc2reader 将录像回放加载到 Python 对象中。
-* 在结果中检查一些基本的录像回放信息。
-* 将比赛细节解析为一个实用对象。
-* 使用 Bokeh 图形可视化比赛结果。
-* 将处理后的录像回放存储在 Cloudant 中。
+在本次开发人员学习之旅中，将创建一个基于 Watson Conversation 的财务方面的聊天机器人，
+该机器人允许用户执行以下操作：1) 使用 Investment Portfolio 服务查询其投资组合和相关财产 2) 使用 Simulated Instrument Analytics 服务在给定场景下对证券进行计算分析。3) 理解如何在备选接口之间进行切换：a) Web 接口 b) TwilioSMS
 
-本 journey 目标读者是需要处理《星际争霸 II》录像回放文件
-并构建强大的数据可视化的应用程序开发人员。
+完成此次学习之旅后，读者将掌握如何：
 
-![](doc/source/images/architecture.png)
+* 使用 Watson Conversation 创建聊天机器人对话
+* 设置与 Watson Conversation 机器人交互的多个接口：Web 和 Twilio
+* 访问 Investment Portfolio 服务，挑选种子数据并将它们发送给该服务
+* 将数据和一个场景发送到 Simulated Instrument Analytics 服务，以检索分析结果
+
+<p align="center">
+  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
+</p>
 
 ## 包含的组件
+- Bluemix Watson Conversation
+- Bluemix Cloudant NoSQL DB
+- Bluemix Investment Portfolio
+- Bluemix Simulated Instrument Analytics
+- TwilioSMS
 
-* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
+## 步骤
 
-* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
+使用 ``Deploy to Bluemix`` 按钮**或**创建这些服务并运行 ``Run Locally``。
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter)：一个 Bluemix 服务，提供非结构化的云数据存储来构建和交付富有成本效益的、高度可靠的、能迅速投入市场的应用程序和服务。
+使用 IBM Cloud for Financial Services，借助 Watson 和开发人员 starter 工具包创建金融服务的未来。访问 https://developer.ibm.com/finance/
 
-## 精选技术
 
-* [Jupyter Notebook](http://jupyter.org/)：一种开源 Web 应用程序，可用于创建和共享包含实时代码、等式、可视化和解释文本的文档。
+## 部署到 Bluemix
 
-* [sc2reader](http://sc2reader.readthedocs.io/en/latest/)：一个 Python 库，它从各种《星际争霸 II》(http://us.battle.net/sc2/en/) 资源中提取数据来支持 SC2 社区的工具和服务。
+[![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
-* [pandas](http://pandas.pydata.org/)：一个 Python 库，提供了高性能、易于使用的数据结构。
+1.在部署之前，请登录到您的 Bluemix 帐户。如果已登录，请忽略此步骤。
+![](readme_images/bm-deploy-img.png)
 
-* [Bokeh](http://bokeh.pydata.org/en/latest/)：一个 Python 交互式可视化库。
+2.我们可以看到，该应用程序已准备好部署，在按下 Deploy 之前，需要确保应用程序名称、地区、组织、空间都是有效的。
+![](readme_images/bm-deploy-step2.png)
 
-# 观看视频
+3.在 Toolchain 中，已部署了该应用程序。如果需要，也可以选择通过 Eclipse IDE、git changes 来编辑代码。
+![](readme_images/bm-deploy-step3.png)
 
-[![](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
+4.完成 **Deploy Stage** 后，您会看到两个阶段已成功通过
+![](readme_images/bm-deploy-step4.png)
 
-# 步骤
+5.要查看为此次学习之旅创建和配置的应用程序和服务，可以使用 Bluemix 仪表板。该应用程序名为 personal-wealth-portfolio-mgt-bot，带有一个唯一后缀：
 
-按照这些步骤来设置并开始学习本 journey 。下面将详细介绍
-这些步骤。
+ * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
+ * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
+ * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-1.[注册 Data Science Experience](#1-sign-up-for-the-data-science-experience)
+**备注** 在运行该应用程序之前，还需要完成其他一些步骤。
+
+开始配置过程之前，本地克隆 `personal-wealth-portfoli-mgt-bot` 代码。在终端窗口中，运行：
+
+  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
+
+## A. 配置 Watson Conversation
+
+必须对 Conversation 服务进行训练，才能成功使用这个应用程序。训练数据在下面的文件中提供：[`resources/workspace.json`](resources/workspace.json)
+
+  1.确保您已登录到 Bluemix
+
+  2.导航到左上侧，单击 3 条平行线，并从左侧导航面板中选择 Dashboard。
+
+  3.向下滚动，并在 All Services 下选择您要使用的 Conversation 服务的实例
+
+  4.到达 Service details 页面后，向下滚动（如有必要）并单击页面右侧的绿色 Launch tool 按钮。这将启动 Conversation 服务的工具，使您能够构建对话流并训练您的聊天机器人。这会带您跳转到 Conversation 服务中您的工作区，该工作区代表一组唯一的聊天流和训练示例。这允许您在单个 Conversation 服务内有多个聊天机器人。
+
+  5.到达该页面后，您会看到“创建”新工作区或“导入”现有工作区的选项。在本例中，我们将“导入”一个已创建的聊天机器人，所以选择“导入”（单击 Create 按钮旁边的箭头）。
+
+  <p align="center">
+    <img width="400" height="250" src="readme_images/ImportArrow.png">
+  </p>
+
+  6.单击 Choose a file，导航到此项目存储库的克隆版本的 resources 目录，并选择文件 workspace.json。选择该文件后，确保选择了 Everything (Intents, Entities, and Dialog) 选项。
+
+  7.单击 Import 上传该 .json 文件，以创建一个工作区并训练 Conversation 服务使用的模型。
+
+**<span style="color:red">备注：**</span>记下您的工作区 ID，[第 C 步](#c-configuring-your-environment-variables-in-bluemix) 中将会使用它。
+
+要在训练完成后找到您的工作区 ID，请单击 Workspace 窗格右上角的 3 个垂直排列的点，并选择 View details。完成上传后，您会看到一个新的工作区。为了将此工作区连接到我们的应用程序，需要将工作区 ID 包含在应用程序仪表板上的环境变量中（如果使用了 ``deploy to Bluemix`` 按钮）或保存在文件 .env 中（如果将在``本地``部署）。保存此 ID。
+
+*或者*，如果您想了解对话，也可以选择该工作区并选择 **Dialog** 选项卡，这里给出了该对话的一个片段：
+
+<p align="center">
+  <img width="400" height="250" src="readme_images/dialog.png">
+</p>
+
+
+## B. 向 Investment Portfolio 服务发送种子信息
+
+现在需要手动向 Investment Portfolio 发送种子信息。在所有这些步骤中，将 **userid, password** 替换为来自您的 Bluemix 服务的凭证。
+
+i. 在 Portfolio Investment 服务中手动创建投资组合条目的示例：
+
+**备注**
+* {service-user-id} 是与您的 Portfolio Investment 服务相关的用户 ID
+* {service-user_password} 是与您的 Portfolio Investment 服务相关的密码
+
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios'`
+
+ii.在条目中手动创建财产的示例：
+
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
+
+
+## C. 在 Bluemix 中配置环境变量
+实际运行该应用程序之前，需要在 Bluemix 中手动更新 3 个环境变量：
+
+转到应用程序的 `runttime` 选项卡。滚动到屏幕底部，`添加`以下环境变量：
+
+**<span style="color:red">备注：</span>**将工作区 ID 的`值`替换为您在[第 A 步](#a-configure-watson-conversation) 中记录的值。
+
+
+| Name                                                  | Value                                |
+|-------------------------------------------------------|--------------------------------------|
+| WORKSPACE_ID                                          | 5b4d1d87-a712-4b24-be39-e7090421b014 |
+| USE_WEBUI                                             | true                                 |
+| CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv     |
+
+单击 **Save** 重新部署您的应用程序。
+
+## D. 从 Bluemix 运行应用程序
+现在您已准备好从 Bluemix 运行您的应用程序。选择 URL
+![](readme_images/runningappurl.png)
+
+**备注：**如果获得 *not Authorized* 消息，则需要确认所使用的凭证与 Bluemix 中的凭证相匹配。
+
+# 在本地运行应用程序
+> 备注：只有在本地运行而不是使用 ``Deploy to Bluemix`` 按钮时，才需要这些步骤
+
+1.[克隆存储库](#1-clone-the-repo)
 2.[创建 Bluemix 服务](#2-create-bluemix-services)
-3.[创建 notebook](#3-create-the-notebook)
-4.[添加录像文件](#4-add-the-replay-file)
-5.[与 Cloudant 建立连接](#5-create-a-connection-to-cloudant)
-6.[运行 notebook](#6-run-the-notebook)
-7.[分析结果](#7-analyze-the-results)
-8.[保存并共享结果](#8-save-and-share)
+3.[配置 Watson Conversation](#3-configure-watson-conversation)
+4.[向 Investment Portfolio 发送种子信息](#4-seed-investment-portfolio)
+5.[配置清单文件](#5-configure-manifest)
+6.[配置 .env 文件](#6-configure-env-file)
+7.[更新 ``controller.js`` 文件](#7-update-file)
+8.[运行应用程序](#8-run-application)
 
-## 1.注册 Data Science Experience
 
-注册 IBM [Data Science Experience](http://datascience.ibm.com/)。注册 Data Science Experience，这会在您的 Bluemix 帐户中创建两个服务：``DSX-Spark`` 和 ``DSX-ObjectStore``。
+## 1.克隆存储库
+
+本地克隆 `personal-wealth-portfoli-mgt-bot 代码`。在终端中，运行：
+
+  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
 ## 2.创建 Bluemix 服务
 
-单击 **Deploy to Bluemix** 按钮创建下面这个 Bluemix 服务，
-或跟随这些链接使用 Bluemix 用户界面来创建该服务。
+创建以下服务：
 
-  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
-  
-[![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
+* [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
+* [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-## 3.创建 notebook
+**备注**
+* 因为此次学习之旅使用了 4 个 Bluemix 服务，您可能达到了已实例化服务数量的限制。要解决此问题，可以删除不再需要的服务。此外，如果达到已创建应用程序数量的限制，可能还需要删除所有不再需要的应用程序。
+* 记录 Conversation 服务的 credentials 选项卡上的用户 ID 和密码。
 
-从左侧菜单中选择 `My Projects`，然后选择 `Default Project`。
-单击 `Add notebooks`（位于右上角）创建一个 notebook。
+## 3.配置 Watson Conversation
+> 备注：执行 ``Deploy to Bluemix`` 部分的 A 部分
 
-* 选择 `From URL` 选项卡。
-* 为 notebook 输入一个名称。
-* 为 notebook 输入一段描述（可选操作）。
-* 输入这个 notebook URL： https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
-* 单击 `Create Notebook` 按钮。
+## 4.向 Investment Portfolio 发送种子信息
+> 备注：执行 ``Deploy to Bluemix`` 部分的 B 部分
 
-![](doc/source/images/create_notebook_from_url.png)
+## 5.配置清单文件
+编辑包含您的代码的文件夹中的 `manifest.yml` 文件，将 `portoflio-chat-newbot` 替换为您的应用程序的唯一名称。您指定的名称决定了应用程序的 URL，比如 `your-application-name.mybluemix.net`。此外，更新服务标签和服务名称，使它们与 Bluemix 中的信息相匹配。`manifest.yml` 文件的相关部分类似于：
 
-## 4.添加录像文件
+    ```yml
+    declared-services:
+    conversation:
+       label: Conversation
+       plan: free
+    Cloudant-service:
+       label: cloudantNoSQLDB
+       plan: Lite
+    investment-portfolio-service:
+       label: fss-portfolio-service
+    instrument-analytics:
+       label: fss-scenario-analytics-service
+    applications:
+        - services:
+        - Conversation
+        - Cloudant-service
+        - investment-portfolio-service
+        - instrument-analytics-service
+    name: portfolio-chat-newbot
+    command: npm start
+    path: .
+    memory: 512M
+    instances: 1
+    domain: mybluemix.net
+    disk_quota: 1024M
+    ```
 
-#### 将录像添加到 notebook
-使用 `Find and Add Data`（查找 `10/01` 图标）
-和它的 `Files` 选项卡。从这里，可以单击
-`browse` 并添加一个来自您的计算机的 .SC2Replay 文件。
+## 6.配置 .env 文件
 
-> 备注：如果没有自己的录像回放，可以克隆这个 git 存储库
-来获取我们的示例。查看 `data/example_input` 目录。
+1.使用以下命令复制样本 `.env.example` 文件，在您的项目存储库的克隆版本的根目录中创建一个 `.env` 文件：
 
-![](doc/source/images/add_file.png)
+**备注**大部分文件系统都将前面带 "." 的文件视为隐藏文件。如果您位于 Windows 系统上，应该能使用 [GitBash](https://git-for-windows.github.io/) 或 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
 
-#### 创建一个空单元
-使用上面的 `+` 按钮创建一个空单元来保存
-插入的代码和凭证。可以将此单元放在
-顶部或 `Load the replay` 前面的任何位置。
 
-#### 插入到代码中
-添加该文件后，使用它的 `Insert to code` 下拉菜单。
-确保您的活动单元是之前创建的空单元。
-从下拉菜单中选择 `Insert StringIO object`。
+  ```none
+  cp .env.example .env
+  ```
 
-![](doc/source/images/insert_to_code.png)
+  需要使用[第 2 步](#2-create-bluemix-services) 中创建的每个服务的 Bluemix 凭证来更新凭证。
 
-备注：此单元被标记为 hidden_cell，因为它包含
-敏感凭证。
+    `.env` 文件看起来将类似于：
 
-#### 修复代码！
+    ```none
 
-我们不想将录像回放文件作为 unicode 文本来处理。我们想要字节。
-在插入的代码中，更改此导入：
-```python
-from io import StringIO
+    USE_WEBUI=true
+
+    #CONVERSATION
+    CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
+    CONVERSATION_USERNAME=
+    CONVERSATION_PASSWORD=
+    WORKSPACE_ID=
+
+    #CLOUDANT
+    CLOUDANT_URL=
+
+    #INVESTMENT PORTFOLIO
+    CRED_PORTFOLIO_USERID=
+    CRED_PORTFOLIO_PWD=
+    URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
+
+    CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
+    CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
+    CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
+
+    #TWILIO
+    USE_TWILIO=false
+    USE_TWILIO_SMS=false
+    TWILIO_ACCOUNT_SID=
+    TWILIO_AUTH_TOKEN=
+    TWILIO_API_KEY=
+    TWILIO_API_SECRET=
+    TWILIO_IPM_SERVICE_SID=
+    TWILIO_NUMBER=
+    ```
+
+## 7.更新文件
+
+一个额外的步骤是，注释掉 Controller 文件中设置 Investment Portfolio 服务的用户 ID 和密码的几行（第 66-70 行）
+![](readme_images/commentlines.png)
+
+## 8.运行应用程序
+
+a. 安装应用程序所需的依赖项：
+
+```none
+npm install
 ```
-要像这样使用 StringIO：
-```python
-from StringIO import StringIO
+
+b. 在本地启动该应用程序：
+
+```none
+npm start
 ```
 
-可更改这个返回行：
-```python
-return StringIO(resp2.text)
+c. 转到以下地址来测试您的应用程序：[http://localhost:3000/](http://localhost:3000/)
+
+
+    启动一个与您的机器人的对话：
+<p align="center">
+      <img width="300" height="200" src="readme_images/conversationsample.png">
+</p>
+
+
+## 配置 Twilio（如果希望将您的应用程序连接到 Twilio，可以选择这么做）
+
+如果计划使用 Twilio 作为接口，仍需要执行一个额外的步骤。我们必须更新另外几个环境变量。这同样是一个可选步骤。默认情况下，该应用程序连接到一个 Web 用户界面；但这一步使您能连接到 Twilio。
+
+**备注：**使用 Twilio 只是一种选择，该应用程序默认情况下会使用 Web 用户界面。所以，应该仅在使用 Twilio 时配置 Twilio。
+
+1.如果尚未这么做，可通过 Twilio 服务获取一个电话号码。https://www.twilio.com/
+2.编辑 .env 文件来添加 Twilio 的凭证。可以在获取 Twilio 电话号码时从仪表板获取此信息。
+
+<p align="center">
+  <img width="300" height="250" src="readme_images/Twilio-dashboard.png">
+</p>
+
+  * 将 USE_TWILIO_SMS 变量设置为 *true*。
+  * 设置 TWILIO_ACCOUNT_SID 变量
+  * 设置 TWILIO_AUTH_TOKEN 变量
+  * 设置 TWILIO_NUMBER 变量
+
+如果单击了 deploy to Bluemix 按钮，则保存新值并在 Bluemix 中重新启动该应用程序，观察日志中是否有错误。
+
+为了让 Twilio 监听本地端口 (:3000)，需要设置一个连接 Webhook 的通道。可以使用工具 *ngrok* https://ngrok.com/。继续并下载 ngrok。打开一个终端窗口，使用以下命令启动 ngrok：
+
+```none
+ngrok http 3000
 ```
-要像这样使用 content 字节：
-```python
-return StringIO(resp2.content)
-```
 
-![](doc/source/images/inserted_stringio.png)
+**备注：**如果从 Bluemix 运行该应用程序，请使用端口 80。
 
-#### 修复变量名
-插入的代码包含一个生成带凭证的方法，然后调用这个
-生成方法来设置一个具有类似 `data_1` 的名称的变量。如果插入
-更多代码，可以重用该方法，而且该变量会发生更改
-（例如 `data_2`）。
+您将获得类似下面这样的响应：
 
-随后在 notebook 中，我们设置 `replay_file = data_1`。所以您可能需要
-修复变量名 `data_1`，使之与您插入的代码相匹配。
+<p align="center">
+  <img width="300" height="200" src="readme_images/ngrok-dashboard.png">
+</p>
 
-## 5.与 Cloudant 建立连接
+复制 https uri 并将它粘贴到（Twilio 仪表板中）您的 SMS Webhook 的 entry 字段中：
 
-#### 创建一个数据库
-在添加连接之前，您需要一个数据库。
-使用 Bluemix 仪表板找到您创建的服务。
-如果使用了 `Deploy to Bluemix`，则查找 `sc2-cloudantNoSQLDB-service`。
-如果直接在 Bluemix 中创建了该服务，您可能挑选了一个
-不同的名称，或者使用了默认名称 `Cloudant NoSQL DB-` 和一个随机
-后缀。
+<p align="center">
+  <img width="300" height="200" src="readme_images/webhook-dashboard.png">
+</p>
 
-* 单击该服务。
 
-* 在 `Manage` 选项卡中单击 `LAUNCH` 按钮。
 
-* 单击左侧菜单上的 Databases 图标。
+# 调整/扩展该学习之旅
 
-* 单击顶部的 `Create Database`。提示输入数据库名称时，
-可以输入任何名称。只要有任何数据库存在，就可以创建
-连接。
+可添加其他金融服务来增强当前应用程序。Xignite, Inc. (http://xignite.com) 提供了基于云的金融市场数据 API，它们可与 Bluemix Fintech 服务并列运行。具体来讲，GetGlobalDelayedQuotes() Rest API 可以提供特定全球证券的延迟报价。
 
-#### 将一个新连接添加到项目中
-使用 DSX 菜单选择包含该 notebook 的项目。
-
-使用 `Find and Add Data`（查找 `10/01` 图标）
-和它的 `Connections` 选项卡。从这里，可以单击 `Create Connection`。
-
-![](doc/source/images/create_connection.png)
-
-为该连接提供一个名称，并可选择输入一段描述。
-在 `Service Category` 下，选择 `Data Service` 按钮。
-在 `Target service instance` 下拉菜单中，选择您的 Cloudant NoSQL DB 实例
-（例如 `sc2-cloudantNoSQLDB-service`）。
-
-![](doc/source/images/add_cloudant_conn.png)
-
-确保已通过 `Connections` 中的一个复选框启用您创建的连接。
-
-#### 创建一个空单元
-使用上面的 `+` 按钮创建一个空单元来保存
-插入的代码和凭证。可以将此单元放在
-顶部或 `Storing replay files` 之前的任何位置。
-
-#### 将 Cloudant 凭证添加到 notebook 中
-使用 `Find and Add Data`（查找 `10/01` 图标）
-和它的 `Connections` 选项卡。您应该会看到
-之前创建的连接名称。
-确保您的活动单元是之前创建的空单元。
-选择 `Insert to code`（在您的连接名称下）。
-
-![](doc/source/images/insert_cloudant_conn.png)
-
-备注：这个单元被标记为 `hidden_cell`，因为它包含敏感凭证。
-
-#### 修复变量名
-插入的代码包含一个字典，字典中包含分配给变量的凭证，
-凭证名称类似于 `credentials_1`。它可能有一个不同的名称（比如 `credentials_2`）。
-如果需要，可重命名它或重新分配它。该 notebook 代码假设凭证名称为 `credentials_1`。
-
-## 6.运行该 notebook
-
-执行一个 notebook 时，实际情况是，
-按从上往下的顺序执行该 notebook 中的每个代码单元。
-
-可以选择每个代码单元，并在代码单元前面的左侧空白处添加一个标记。标记
-格式为 `In [x]:`。根据 notebook 的状态，`x` 可以是：
-
-* 空白，表示该单元从未执行过。
-* 一个数字，表示执行此代码步骤的相对顺序。
-* 一个 `*`，表示目前正在执行该单元。
-
-可通过多种方式执行 notebook 中的代码单元：
-
-* 一次一个单元。
-  * 选择该单元，然后在工具栏中按下 `Play` 按钮。
-* 批处理模式，按顺序执行。
-  * `Cell` 菜单栏提供了多个选项。例如，可以
-    选择 `Run All` 运行 notebook 中的所有单元，或者可以选择 `Run All Below`，
-    这将从当前选定单元下方的第一个单元开始执行，然后
-    继续执行后面的所有单元。
-* 按计划的时间执行。
-  * 按下位于 notebook 面板右上部分的 `Schedule` 
-    按钮。在这里可以计划在未来的某个时刻执行一次 notebook，
-    或者按指定的间隔重复执行。
-
-## 7.分析结果
-
-运行 notebook 的结果是一个报告，可与代码一起共享
-或单独共享。可以向想要查看您如何得出结论的受众
-共享该代码。文本、代码和输出/图表
-组合在一个网页中。对于不想查看代码的受众，
-可以共享一个仅显示文本和输出/图表的网页。
-
-### 基本输出
-
-基本录像信息会输出，以展示如何开始处理
-已加载的录像。当然，输出还有助于识别您在查看
-哪个录像。
-
-![](doc/source/images/basic_info.png)
-
-### 数据准备
-
-如果浏览代码，就会看到准备数据花费了大量精力
-。
-
-#### 单元和构建组
-
-为 _known_ 单元和组创建了字符串列表。识别事件类型需要
-这些信息。
-
-#### 事件处理函数
-
-编写处理函数方法是为了处理不同类型的事件，
-并将信息累积到玩家的事件列表中。
-
-#### ReplayData 类
-
-我们创建了 `ReplayData` 类来获取录像字节流，
-并使用所有事件处理函数来处理它们。最终的玩家事件列表存储在
-一个 `ReplayData` 对象中。`ReplayData` 类也有一个 `as_dict()` 
-方法。此方法返回一个 Python 字典，以方便使用我们的 
-Python 代码处理重放事件。我们也会使用此字典创建一个 
-Cloudant JSON 文档。
-
-### 可视化
-
-为了可视化录像，我们选择使用两种不同类型的图表，
-并展示比赛玩家的并列比较视图。
-
-* Nelson 规则图
-* 箱线图
-
-我们为以下每个指标生成这些图表。通过比较这些指标的趋势，
-您将对玩家的表现有透彻的
-了解。
-
-* 矿物采集速率
-* 瓦斯采集速率
-* 实际工人数量
-* 补给利用率（已用/可用）
-* 工人/补给比率（工人数/已用的补给）
-
-#### 箱线图
-
-此刻可以看到，得益于 _pandas DataFrames_ 和 _Bokeh BoxPlot_，
-生成箱线图非常轻松。
-
-箱线图是每个玩家的指标的汇总统计数据
-的图形表示。“箱子”涵盖从第一个四分位到第三个四分位
-的范围。箱子中的水平线显示了均值。“须图”显示了
-这些四分位外的数据分布。异常值（如果有）显示为
-须图外的标记。
-
-对于每个指标，我们都用一个箱线图来并列显示玩家统计数据。
-
-![](doc/source/images/box_plot_chart.png)
-
-在上面的屏幕截图中，可以看到并列显示的每分钟瓦斯数量统计结果。
-在这场比赛中，Neeb 占据优势。除了显示四分位的箱子和
-显示范围的须图，这个示例还有异常值
-指标。在许多情况下，没有异常值。
-
-#### Nelson 规则图
-
-Nelson 规则图不那么容易绘制。您会注意到，在帮助器方法中
-创建这些图表需要大量代码。
-
-基本图是一个 Bokeh 线图，时间序列中的每个
-数据点都有对应的圆圈标记。这显示了玩家的指标随时间变化
-的趋势。玩家图表并列显示，以便允许单独缩放
-和添加其他许多标注。
-
-我们添加了水平线来显示每位玩家的算数平均数（x-bar，也即样本均值）、第一个和第二个
-标准偏差，以及控制上限和下限。
-
-我们使用 `detect_nelson_bias()` 方法检测算数平均数上方（或下方）的 
-9 个或更多连续点。然后，通过使用 Bokeh 的 `add_layout()` 和
-`BoxAnnotation`，将背景绘制为绿色或红色，分别表示在该线
-上方或下方出现偏差的范围。
-
-`detect_nelson_trend()` 方法会检测何时出现 6 个或更多的连续点全部增大或减小。
-都增加或降低。通过使用 Bokeh 的 `add_layout()` 和 `Arrow`，我们
-在图表上绘制箭头来突出显示这些上升或下降趋势。
-
-其结果是一个填满了统计分析数据的并列比较
-视图。
-
-![](doc/source/images/nelson_rules_chart.png)
-
-在上面的屏幕截图中，可以看到通过 Bokeh 交互式图表获得的
-时间/值波动细节。另请注意不同的比例和箭头。
-在这次比赛中，Neeb 采取了两次先发制人的行动，在矿物上获得了优势。
-如果运行该 notebook，就会看到其他示例显示了获胜者在何处
-获得了优势。
-
-### 存储的录像文档
-
-可以浏览您的 Cloudant 数据库来查看存储的录像。执行所有
-加载和解析后，我们将它们存储为了 JSON 文档。您将会在 
-*sc2replays* 数据库中看到所有录像，而在 
-*sc2recents* 中仅能看到最新的录像。
-
-## 8.保存和共享
-
-### 如何保存工作：
-
-在 `File` 菜单下，可通过多种方式保存 notebook：
-
-* `Save` 将保存 notebook 的当前状态，不含任何版本
-  信息。
-* `Save Version` 将保存 notebook 的当前状态和一个
-  包含日期和时间戳的版本标记。最多可以保存 notebook 的 10 个版本，
-  每个版本可通过选择 `Revert To Version` 菜单项进行检索。
-
-### 如何共享工作：
-
-要共享 notebook，可以选择 notebook 面板右上部分中的 
-Share 按钮。该操作的最终结果是一个 URL
-链接，其中将显示您的 notebook 的“只读”版本。可通过多种
-选择来准确指定想共享 notebook 中的哪些内容：
-
-* `Only text and output` 将删除 notebook 视图中的所有代码单元。
-* `All content excluding sensitive code cells` 将删除任何包含 *sensitive* 标记的
-  代码单元。例如，`# @hidden_cell` 用于保护您的 
-  Bluemix 凭证不被共享。
-* `All content, including code` 按原样显示 notebook。
-* 菜单中还有各种不同的 `download as` 选项。
-
-# 样本输出
-
-data/examples 中的 sample_output.html 已嵌入交互式 Bokeh 图表的
-JavaScript 代码。使用 rawgit.com 通过以下链接
-查看它：
-
-[样本输出](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
+<p align="center">
+  <img width="400" height="150" src="readme_images/Extensions.png">
+</p>
 
 # 故障排除
 
-[参见 DEBUGGING.md.](DEBUGGING.md)
+    * 要排除 Bluemix 应用程序的故障，请使用日志。要查看日志，请运行以下代码：
+
+    ```bash
+    cf logs <application-name> --recent
+    ```
+
+    * 如果您在本地运行，请仔细检查您的环境变量，以确认它们是匹配的。
+
+    Bluemix 服务（Conversation、Cloudant 和 Discovery）的凭证可以在 
+    Bluemix 中的 ``Services`` 菜单中找到，然后选择 ``Service Credentials`` 
+    选项。
+
+
+    * 也可以访问 `https://<您的应用程序的名称>.mybluemix.net/debug.html` 来调试应用程序，您会看到一个显示了元数据的面板，上面包含与所使用的服务交互的细节。
 
 # 许可
 
 [Apache 2.0](LICENSE)
+
+# 隐私声明
+
+这个 Node Web 应用程序样本包含跟踪部署到 Bluemix 和其他 Cloud Foundry 平台的部署过程的代码。每次部署时，都会将以下信息发送到 Deployment Tracker 服务：
+
+* 应用程序名称 (`application_name`)
+* 空间 ID (`space_id`)
+* 应用程序版本 (`application_version`)
+* 应用程序 URI (`application_uris`)
+
+此数据收集自 IBM Bluemix 和其他 Cloud Foundry 平台中的 `VCAP_APPLICATION` 环境变量。IBM 使用此数据跟踪与将样本应用程序部署到 IBM Bluemix 相关的指标。仅有那些包含代码以对 Deployment Tracker 服务执行 ping 操作的样本应用程序的部署过程才会被跟踪。
+
+### 禁用部署跟踪
+
+通过从此存储库根目录中的 `server.js` 文件开头部分删除 `require('cf-deployment-tracker-client').track();`，可以禁用部署跟踪。
