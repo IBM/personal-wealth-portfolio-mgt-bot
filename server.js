@@ -27,7 +27,7 @@ var http = require('http').Server(app);
 var debug = require('debug')('bot:server');
 
 // Deployment tracking
-//require('cf-deployment-tracker-client').track();
+require('metrics-tracker-client').track();
 
 // configure express
 app.use(helmet()); //Helmet helps you secure your Express apps
