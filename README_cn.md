@@ -165,7 +165,7 @@ ii.在条目中手动创建财产的示例：
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **备注：**
-* 因为此次学习之旅使用了 4 个 Bluemix 服务，您可能达到了已实例化服务数量的限制。要解决此问题，可以删除不再需要的服务。此外，如果达到已创建应用程序数量的限制，可能还需要删除所有不再需要的应用程序。
+* 因为本 Code Pattern 使用了 4 个 Bluemix 服务，您可能达到了已实例化服务数量的限制。要解决此问题，可以删除不再需要的服务。此外，如果达到已创建应用程序数量的限制，可能还需要删除所有不再需要的应用程序。
 * 记录 Conversation 服务的 credentials 选项卡上的用户 ID 和密码。
 
 ## 3.配置 Watson Conversation
