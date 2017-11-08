@@ -35,7 +35,7 @@
 使用 IBM Cloud for Financial Services，借助 Watson 和开发人员 starter 工具包创建金融服务的未来。访问 https://developer.ibm.com/finance/
 
 
-## 部署到 Bluemix
+## 部署到 Bluemix 
 
 [![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
