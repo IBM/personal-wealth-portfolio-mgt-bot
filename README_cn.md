@@ -322,7 +322,7 @@ ngrok http 3000
 
 
 
-# 调整/扩展该学习之旅
+# 调整/扩展本 Code Pattern
 
 可添加其他金融服务来增强当前应用程序。Xignite, Inc. (http://xignite.com) 提供了基于云的金融市场数据 API，它们可与 Bluemix Fintech 服务并列运行。具体来讲，GetGlobalDelayedQuotes() Rest API 可以提供特定全球证券的延迟报价。
 
