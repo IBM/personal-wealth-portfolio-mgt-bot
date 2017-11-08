@@ -2,7 +2,9 @@
 
 [![构建状态](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
+*阅读本文的其他语言版本：[English](README.md)。*
 *阅读本文的其他语言版本：[한국어](README-ko.md)。*
+
 
 在本 Code Pattern 中，将创建一个基于 Watson Conversation 的财务方面的聊天机器人，
 该机器人允许用户执行以下操作：
