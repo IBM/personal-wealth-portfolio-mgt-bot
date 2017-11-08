@@ -3,6 +3,7 @@
 [![构建状态](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
 *阅读本文的其他语言版本：[English](README.md)。*
+
 *阅读本文的其他语言版本：[한국어](README-ko.md)。*
 
 
