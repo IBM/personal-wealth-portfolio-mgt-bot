@@ -5,14 +5,17 @@
 *阅读本文的其他语言版本：[한국어](README-ko.md)。*
 
 在本 Code Pattern 中，将创建一个基于 Watson Conversation 的财务方面的聊天机器人，
-该机器人允许用户执行以下操作：1) 使用 Investment Portfolio 服务查询其投资组合和相关财产 2) 使用 Simulated Instrument Analytics 服务在给定场景下对证券进行计算分析。3) 理解如何在备选接口之间进行切换：a) Web 接口 b) TwilioSMS
+该机器人允许用户执行以下操作：
+1) 使用 Investment Portfolio 服务查询其投资组合和相关财产。
+2) 使用 Simulated Instrument Analytics 服务在给定场景下对证券进行计算分析。
+3) 理解如何在备选接口之间进行切换：a) Web 接口 b) TwilioSMS
 
-完成此次学习之旅后，读者将掌握如何：
+完成此次 Code Pattern 后，读者将掌握如何：
 
-* 使用 Watson Conversation 创建聊天机器人对话
-* 设置与 Watson Conversation 机器人交互的多个接口：Web 和 Twilio
-* 访问 Investment Portfolio 服务，挑选种子数据并将它们发送给该服务
-* 将数据和一个场景发送到 Simulated Instrument Analytics 服务，以检索分析结果
+* 使用 Watson Conversation 创建聊天机器人对话。
+* 设置与 Watson Conversation 机器人交互的多个接口：Web 和 Twilio。
+* 访问 Investment Portfolio 服务，挑选种子数据并将它们发送给该服务。
+* 将数据和一个场景发送到 Simulated Instrument Analytics 服务，以检索分析结果。
 
 <p align="center">
   <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
