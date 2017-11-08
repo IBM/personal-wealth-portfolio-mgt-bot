@@ -330,7 +330,7 @@ ngrok http 3000
   <img width="400" height="150" src="readme_images/Extensions.png">
 </p>
 
-# 故障排除
+# 故障排除 
 
     * 要排除 Bluemix 应用程序的故障，请使用日志。要查看日志，请运行以下代码：
 
