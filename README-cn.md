@@ -140,12 +140,19 @@ ii.在条目中手动创建财产的示例：
 > 备注：只有在本地运行而不是使用 ``Deploy to Bluemix`` 按钮时，才需要这些步骤
 
 1.[克隆存储库](#1-clone-the-repo)
+
 2.[创建 Bluemix 服务](#2-create-bluemix-services)
+
 3.[配置 Watson Conversation](#3-configure-watson-conversation)
+
 4.[向 Investment Portfolio 发送种子信息](#4-seed-investment-portfolio)
+
 5.[配置清单文件](#5-configure-manifest)
+
 6.[配置 .env 文件](#6-configure-env-file)
+
 7.[更新 ``controller.js`` 文件](#7-update-file)
+
 8.[运行应用程序](#8-run-application)
 
 
