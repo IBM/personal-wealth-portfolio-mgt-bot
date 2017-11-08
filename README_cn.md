@@ -134,7 +134,7 @@ ii.在条目中手动创建财产的示例：
 现在您已准备好从 Bluemix 运行您的应用程序。选择 URL
 ![](readme_images/runningappurl.png)
 
-**备注：**如果获得 *not Authorized* 消息，则需要确认所使用的凭证与 Bluemix 中的凭证相匹配。
+**备注：** 如果获得 *not Authorized* 消息，则需要确认所使用的凭证与 Bluemix 中的凭证相匹配。
 
 # 在本地运行应用程序
 > 备注：只有在本地运行而不是使用 ``Deploy to Bluemix`` 按钮时，才需要这些步骤
@@ -208,7 +208,7 @@ ii.在条目中手动创建财产的示例：
 
 1.使用以下命令复制样本 `.env.example` 文件，在您的项目存储库的克隆版本的根目录中创建一个 `.env` 文件：
 
-**备注：**大部分文件系统都将前面带 "." 的文件视为隐藏文件。如果您位于 Windows 系统上，应该能使用 [GitBash](https://git-for-windows.github.io/) 或 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
+**备注：** 大部分文件系统都将前面带 "." 的文件视为隐藏文件。如果您位于 Windows 系统上，应该能使用 [GitBash](https://git-for-windows.github.io/) 或 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
 
 
   ```none
@@ -284,7 +284,7 @@ c. 转到以下地址来测试您的应用程序：[http://localhost:3000/](http
 
 如果计划使用 Twilio 作为接口，仍需要执行一个额外的步骤。我们必须更新另外几个环境变量。这同样是一个可选步骤。默认情况下，该应用程序连接到一个 Web 用户界面；但这一步使您能连接到 Twilio。
 
-**备注：**使用 Twilio 只是一种选择，该应用程序默认情况下会使用 Web 用户界面。所以，应该仅在使用 Twilio 时配置 Twilio。
+**备注：** 使用 Twilio 只是一种选择，该应用程序默认情况下会使用 Web 用户界面。所以，应该仅在使用 Twilio 时配置 Twilio。
 
 1.如果尚未这么做，可通过 Twilio 服务获取一个电话号码。https://www.twilio.com/
 2.编辑 .env 文件来添加 Twilio 的凭证。可以在获取 Twilio 电话号码时从仪表板获取此信息。
@@ -306,7 +306,7 @@ c. 转到以下地址来测试您的应用程序：[http://localhost:3000/](http
 ngrok http 3000
 ```
 
-**备注：**如果从 Bluemix 运行该应用程序，请使用端口 80。
+**备注：** 如果从 Bluemix 运行该应用程序，请使用端口 80。
 
 您将获得类似下面这样的响应：
 
