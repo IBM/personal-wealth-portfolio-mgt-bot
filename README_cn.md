@@ -51,7 +51,7 @@
 4.完成 **Deploy Stage** 后，您会看到两个阶段已成功通过
 ![](readme_images/bm-deploy-step4.png)
 
-5.要查看为此次学习之旅创建和配置的应用程序和服务，可以使用 Bluemix 仪表板。该应用程序名为 personal-wealth-portfolio-mgt-bot，带有一个唯一后缀：
+5.要查看为这个 Code Pattern 创建和配置的应用程序和服务，可以使用 Bluemix 仪表板。该应用程序名为 personal-wealth-portfolio-mgt-bot，带有一个唯一后缀：
 
  * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
