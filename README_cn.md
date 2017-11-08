@@ -4,7 +4,7 @@
 
 *阅读本文的其他语言版本：[한국어](README-ko.md)。*
 
-在本 developer journey 中，将创建一个基于 Watson Conversation 的财务方面的聊天机器人，
+在本 Code Pattern 中，将创建一个基于 Watson Conversation 的财务方面的聊天机器人，
 该机器人允许用户执行以下操作：1) 使用 Investment Portfolio 服务查询其投资组合和相关财产 2) 使用 Simulated Instrument Analytics 服务在给定场景下对证券进行计算分析。3) 理解如何在备选接口之间进行切换：a) Web 接口 b) TwilioSMS
 
 完成此次学习之旅后，读者将掌握如何：
