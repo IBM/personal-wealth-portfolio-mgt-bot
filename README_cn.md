@@ -58,7 +58,7 @@
  * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
  * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-**备注** 在运行该应用程序之前，还需要完成其他一些步骤。
+**备注：** 在运行该应用程序之前，还需要完成其他一些步骤。
 
 开始配置过程之前，本地克隆 `personal-wealth-portfoli-mgt-bot` 代码。在终端窗口中，运行：
 
@@ -103,7 +103,7 @@
 
 i. 在 Portfolio Investment 服务中手动创建投资组合条目的示例：
 
-**备注**
+**备注：**
 * {service-user-id} 是与您的 Portfolio Investment 服务相关的用户 ID
 * {service-user_password} 是与您的 Portfolio Investment 服务相关的密码
 
@@ -164,7 +164,7 @@ ii.在条目中手动创建财产的示例：
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
-**备注**
+**备注：**
 * 因为此次学习之旅使用了 4 个 Bluemix 服务，您可能达到了已实例化服务数量的限制。要解决此问题，可以删除不再需要的服务。此外，如果达到已创建应用程序数量的限制，可能还需要删除所有不再需要的应用程序。
 * 记录 Conversation 服务的 credentials 选项卡上的用户 ID 和密码。
 
@@ -208,7 +208,7 @@ ii.在条目中手动创建财产的示例：
 
 1.使用以下命令复制样本 `.env.example` 文件，在您的项目存储库的克隆版本的根目录中创建一个 `.env` 文件：
 
-**备注**大部分文件系统都将前面带 "." 的文件视为隐藏文件。如果您位于 Windows 系统上，应该能使用 [GitBash](https://git-for-windows.github.io/) 或 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
+**备注：**大部分文件系统都将前面带 "." 的文件视为隐藏文件。如果您位于 Windows 系统上，应该能使用 [GitBash](https://git-for-windows.github.io/) 或 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true)
 
 
   ```none
