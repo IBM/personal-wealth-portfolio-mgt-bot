@@ -1,14 +1,14 @@
 # Personal Wealth Portfolio Management Bot
 
 [![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
-![Bluemix Deployments](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/badge.svg)
+![IBM Cloud Deployments](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/badge.svg)
 
 *Read this in other languages: [한국어](README-ko.md).*
 
-In this developer journey we will create a financial-based Watson Conversation based chatbot
+In this developer pattern we will create a financial-based Watson Conversation based chatbot
 that allows a user to: 1) use an Investment Portfolio service to query his or her investment portfolios and associated holdings 2) use the Simulated Instrument Analytics service to compute analytics on securities under a given scenario. 3) understand how to swap between alternative interfaces:  a) web interface b) TwilioSMS
 
-When the reader has completed this journey, he or she will understand how to:
+When the reader has completed this pattern, he or she will understand how to:
 
 * Create a chatbot dialog with Watson Conversation
 * Set up multiple interfaces with the Watson Conversation bot: Web & Twilio
@@ -20,10 +20,10 @@ When the reader has completed this journey, he or she will understand how to:
 </p>
 
 ## Included Components
-- Bluemix Watson Conversation
-- Bluemix Cloudant NoSQL DB
-- Bluemix Investment Portfolio
-- Bluemix Simulated Instrument Analytics
+- IBM Cloud Watson Conversation
+- IBM Cloud Cloudant NoSQL DB
+- IBM Cloud Investment Portfolio
+- IBM Cloud Simulated Instrument Analytics
 - TwilioSMS
 
 ## Steps
@@ -33,11 +33,11 @@ Use the ``Deploy to Bluemix`` button **OR** create the services and run ``Run Lo
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
 
-## Deploy to Bluemix
+## Deploy to IBM Cloud
 
-[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
+[![Deploy to IBM Cloud](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
-1. Log in to your Bluemix account before deploying. If already logged in, then ignore this step.
+1. Log in to your IBM Cloud account before deploying. If already logged in, then ignore this step.
 ![](readme_images/bm-deploy-img.png)
 
 2. We can see that the app is ready to be deployed, and we need to ensure that the App name, region, Organization, Space is valid before pressing 'Deploy'.
@@ -49,7 +49,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 4. You should see two stages pass successfully once your **Deploy Stage** completes
 ![](readme_images/bm-deploy-step4.png)
 
-5. To see the app and services created and configured for this journey, use the Bluemix dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
+5. To see the app and services created and configured for this pattern, use the IBM Cloud dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
 
  * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
@@ -66,7 +66,7 @@ Before you start the configuration process, clone the `personal-wealth-portfoli-
 
 The Conversation service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
 
-  1. Make sure you are logged into Bluemix
+  1. Make sure you are logged into IBM Cloud
 
   2. Navigate to upper left hand side and click on the 3 parallel lines and select Dashboard from the left hand navigation panel.
 
@@ -86,7 +86,7 @@ The Conversation service must be trained before you can successfully use this ap
 
 **<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#c-configuring-your-environment-variables-in-bluemix).
 
-To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
+To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``Deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
 
@@ -97,7 +97,7 @@ To find your workspace ID once training has completed, click the three vertical 
 
 ## B. Seed the Investment Portfolio Service
 
-You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password** with the credentials from your BlueMix Service.
+You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password** with the credentials from your IBM Cloud Service.
 
 i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
 
@@ -112,8 +112,8 @@ ii. Example of manually creating holdings in your entry:
 `curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
 
 
-## C. Configuring your Environment Variables in Bluemix
-Before you can actually run the application, you need to manually update three environment variables in Bluemix:
+## C. Configuring your Environment Variables in IBM Cloud
+Before you can actually run the application, you need to manually update three environment variables in IBM Cloud:
 
 Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
 
@@ -128,17 +128,17 @@ Go to the `runttime` tab of your application.  Scroll to the bottom of the scree
 
 Click **Save** to redeploy your application.
 
-## D. Running application from Bluemix
-Now you are ready to run your application from Bluemix. Select the URL
+## D. Running application from IBM Cloud
+Now you are ready to run your application from IBM Cloud. Select the URL
 ![](readme_images/runningappurl.png)
 
-**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in Bluemix.
+**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in IBM Cloud.
 
 # Running Application Locally
 > NOTE: These steps are only needed when running locally instead of using the ``Deploy to Bluemix`` button
 
 1. [Clone the repo](#1-clone-the-repo)
-2. [Create Bluemix services](#2-create-bluemix-services)
+2. [Create IBM Cloud services](#2-create-bluemix-services)
 3. [Configure Watson Conversation](#3-configure-watson-conversation)
 4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
 5. [Configure Manifest file](#5-configure-manifest)
@@ -153,7 +153,7 @@ Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## 2. Create Bluemix services
+## 2. Create IBM Cloud services
 
 Create the following services:
 
@@ -163,7 +163,7 @@ Create the following services:
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **Note**
-* Because this Journey uses 4 Bluemix services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
+* Because this pattern uses 4 IBM Cloud services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
 * Record the userid, password from the credentials tab on the Conversation Service.
 
 ## 3. Configure Watson Conversation
@@ -173,7 +173,7 @@ Create the following services:
 > NOTE: Execute section B of the ``Deploy to Bluemix`` section
 
 ## 5. Configure Manifest
-Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
+Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
     declared-services:
@@ -213,7 +213,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
   cp .env.example .env
   ```
 
-  You will need to update the credentials with the Bluemix credentials for each of the services you created in [Step 2](#2-create-bluemix-services).
+  You will need to update the credentials with the IBM Cloud credentials for each of the services you created in [Step 2](#2-create-bluemix-services).
 
     The `.env` file will look something like the following:
 
@@ -296,7 +296,7 @@ You still have one more step if you are planning to use Twilio as the interface.
   * Set the TWILIO_AUTH_TOKEN variable
   * Set the TWILIO_NUMBER variable
 
-If you clicked the "deploy to Bluemix" button, save the new values and restart the application in Bluemix, watch the logs for errors.
+If you clicked the "Deploy to Bluemix" button, save the new values and restart the application in IBM Cloud, watch the logs for errors.
 
 In order to have Twilio listen to the local port (:3000), you need to set up a tunnel a webhook. You can use the tool *ngrok* https://ngrok.com/. Go ahead and download ngrok.  Open a terminal window and start ngrok by using the command:
 
@@ -304,7 +304,7 @@ In order to have Twilio listen to the local port (:3000), you need to set up a t
 ngrok http 3000
 ```
 
-**Note:** use port 80 if you are running the application from Bluemix.
+**Note:** use port 80 if you are running the application from IBM Cloud.
 
 You will get a response like the following:
 
@@ -320,9 +320,9 @@ Copy the https uri and paste it into the entry field for your SMS Webhook (insid
 
 
 
-# Adapting/Extending the Journey
+# Adapting/Extending the pattern
 
-One can enhance the current application by adding in additional financial services. Xignite, Inc. (http://xignite.com)  provides cloud-based financial market data APIs that work side by side with the Bluemix Fintech services.  Specifically, the GetGlobalDelayedQuotes() Rest API is available to provide delayed quotes for a specific global security.
+One can enhance the current application by adding in additional financial services. Xignite, Inc. (http://xignite.com)  provides cloud-based financial market data APIs that work side by side with the IBM Cloud Fintech services.  Specifically, the GetGlobalDelayedQuotes() Rest API is available to provide delayed quotes for a specific global security.
 
 <p align="center">
   <img width="400" height="150" src="readme_images/Extensions.png">
@@ -330,7 +330,7 @@ One can enhance the current application by adding in additional financial servic
 
 # Troubleshooting
 
-    * To troubleshoot your Bluemix application, use the logs. To see the logs, run:
+    * To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
 
     ```bash
     cf logs <application-name> --recent
@@ -338,8 +338,8 @@ One can enhance the current application by adding in additional financial servic
 
     * If you are running locally - inspect your environment varibles closely to confirm they match.
 
-    The credentials for Bluemix services (Conversation, Cloudant, and Discovery), can
-    be found in the ``Services`` menu in Bluemix, and selecting the ``Service Credentials``
+    The credentials for IBM Cloud services (Conversation, Cloudant, and Discovery), can
+    be found in the ``Services`` menu in IBM Cloud, and selecting the ``Service Credentials``
     option.
 
 
@@ -351,7 +351,7 @@ One can enhance the current application by adding in additional financial servic
 
 # Privacy Notice
 
-Sample web applications that include this package may be configured to track deployments to [IBM Bluemix](https://www.bluemix.net/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM/metrics-collector-service) service on each deployment:
+Sample web applications that include this package may be configured to track deployments to [IBM Cloud](https://www.bluemix.net/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM/metrics-collector-service) service on each deployment:
 
 * Node.js package version
 * Node.js repository URL
@@ -366,8 +366,11 @@ Sample web applications that include this package may be configured to track dep
 * Number of instances for each bound service and associated plan information
 * Metadata in the repository.yaml file
 
-This data is collected from the `package.json` and `repository.yaml` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
+This data is collected from the `package.json` and `repository.yaml` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Cloud and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Cloud to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
 
 ### Disabling Deployment Tracking
 
 Deployment tracking can be disabled by removing `require('metrics-tracker-client').track();` from the beginning of the `server.js` file at the root of this repository.
+
+## License
+[Apache 2.0](LICENSE)
