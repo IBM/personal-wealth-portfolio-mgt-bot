@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
+</p>
+
 # Personal Wealth Portfolio Management Bot
 
 [![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
@@ -15,9 +19,12 @@ When the reader has completed this pattern, he or she will understand how to:
 * Access, seed and send data to the Investment Portfolio Service
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
-<p align="center">
-  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
-</p>
+Click here to view the [IBM Pattern](https://developer.ibm.com/code/patterns/create-an-investment-management-chatbot/) for this project.
+
+## Prerequisites
+You will need the following accounts and tools:
+* [IBM Cloud account](https://console.ng.bluemix.net/registration/)
+* [Bluemix CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
 
 ## Included Components
 - IBM Cloud Watson Conversation
