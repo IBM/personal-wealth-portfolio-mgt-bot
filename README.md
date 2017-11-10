@@ -28,7 +28,7 @@ When the reader has completed this pattern, he or she will understand how to:
 
 ## Steps
 
-Use the ``Deploy to Bluemix`` button **OR** create the services and run ``Run Locally``.
+Use the ``Deploy to IBM Cloud`` button **OR** create the services and run ``Run Locally``.
 
 Use the IBM Cloud for Financial Services to build the future of financial services with to help from Watson and developer starter kits.  Visit https://developer.ibm.com/finance/
 
@@ -86,7 +86,7 @@ The Conversation service must be trained before you can successfully use this ap
 
 **<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#c-configuring-your-environment-variables-in-bluemix).
 
-To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``Deploy to Bluemix`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
+To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``Deploy to IBM Cloud`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
 
@@ -135,7 +135,7 @@ Now you are ready to run your application from IBM Cloud. Select the URL
 **NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in IBM Cloud.
 
 # Running Application Locally
-> NOTE: These steps are only needed when running locally instead of using the ``Deploy to Bluemix`` button
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button
 
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create IBM Cloud services](#2-create-bluemix-services)
@@ -296,7 +296,7 @@ You still have one more step if you are planning to use Twilio as the interface.
   * Set the TWILIO_AUTH_TOKEN variable
   * Set the TWILIO_NUMBER variable
 
-If you clicked the "Deploy to Bluemix" button, save the new values and restart the application in IBM Cloud, watch the logs for errors.
+If you clicked the "Deploy to IBM Cloud" button, save the new values and restart the application in IBM Cloud, watch the logs for errors.
 
 In order to have Twilio listen to the local port (:3000), you need to set up a tunnel a webhook. You can use the tool *ngrok* https://ngrok.com/. Go ahead and download ngrok.  Open a terminal window and start ngrok by using the command:
 
