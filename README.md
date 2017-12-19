@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 ![IBM Cloud Deployments](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/badge.svg)
 
-*Read this in other languages: [한국어](README-ko.md)、[中国](README-cn.md).*
+*Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md), [Português](README-pt.md) .*
 
 In this developer pattern we will create a financial-based Watson Conversation based chatbot
 that allows a user to: 1) use an Investment Portfolio service to query his or her investment portfolios and associated holdings 2) use the Simulated Instrument Analytics service to compute analytics on securities under a given scenario. 3) understand how to swap between alternative interfaces:  a) web interface b) TwilioSMS
