@@ -24,7 +24,7 @@ Click here to view the [IBM Pattern](https://developer.ibm.com/code/patterns/cre
 ## Prerequisites
 You will need the following accounts and tools:
 * [IBM Cloud account](https://console.ng.bluemix.net/registration/)
-* [Bluemix CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
+* [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
 
 ## Included Components
 - IBM Cloud Watson Conversation
@@ -174,10 +174,10 @@ Create the following services:
 * Record the userid, password from the credentials tab on the Conversation Service.
 
 ## 3. Configure Watson Conversation
-> NOTE: Execute section A of the ``Deploy to Bluemix`` section
+> NOTE: Execute section A of the ``Deploy to IBM Cloud`` section
 
 ## 4. Seed Investment Portfolio
-> NOTE: Execute section B of the ``Deploy to Bluemix`` section
+> NOTE: Execute section B of the ``Deploy to IBM Cloud`` section
 
 ## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
