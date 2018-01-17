@@ -1,6 +1,4 @@
-<p align="center">
-  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
-</p>
+![Architecture](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/arch-fin-mgmt.png)
 
 # Personal Wealth Portfolio Management Bot
 
@@ -45,16 +43,16 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 [![Deploy to IBM Cloud](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
 1. Log in to your IBM Cloud account before deploying. If already logged in, then ignore this step.
-![](readme_images/bm-deploy-img.png)
+![Deploy - step 1](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-img.png)
 
 2. We can see that the app is ready to be deployed, and we need to ensure that the App name, region, Organization, Space is valid before pressing 'Deploy'.
-![](readme_images/bm-deploy-step2.png)
+![Deploy - step 2](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-step2.png)
 
 3. In Toolchain, the app is deployed. There are also option to edit code via eclipseIDE, git changes if required.
-![](readme_images/bm-deploy-step3.png)
+![Deploy - step 3](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-step3.png)
 
 4. You should see two stages pass successfully once your **Deploy Stage** completes
-![](readme_images/bm-deploy-step4.png)
+![Deploy - step 4](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-step4.png)
 
 5. To see the app and services created and configured for this pattern, use the IBM Cloud dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
 
@@ -84,7 +82,7 @@ The Conversation service must be trained before you can successfully use this ap
   5. Once on the page, you will see the option to either “Create” a new workspace, or “import” an existing one. We are going to “import” a premade chatbot for this example, so select “Import" (click on the arrow next to the create button).
 
   <p align="center">
-    <img width="400" height="250" src="readme_images/ImportArrow.png">
+    <img width="400" height="250" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/ImportArrow.png">
   </p>
 
   6. Click Choose a file, navigate to the resources directory of your clone of the repository for this project, and select the file workspace.json. Once the file is selected, ensure that the “Everything (Intents, Entities, and Dialog” option is selected.
@@ -98,7 +96,7 @@ To find your workspace ID once training has completed, click the three vertical 
 *Optionally*, you may want to explore the conversation dialog. select the workspace and choose the **Dialog** tab, here's a snippet of the dialog:
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/dialog.png">
+  <img width="400" height="250" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/dialog.png">
 </p>
 
 
@@ -137,7 +135,7 @@ Click **Save** to redeploy your application.
 
 ## D. Running application from IBM Cloud
 Now you are ready to run your application from IBM Cloud. Select the URL
-![](readme_images/runningappurl.png)
+![](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/runningappurl.png)
 
 **NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in IBM Cloud.
 
@@ -260,7 +258,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
 ## 7. Update file
 
 One additional step is that you need to comment out two lines in the Controller file to set the userid & password of the investment portfolio service (lines 66-70)
-![](readme_images/commentlines.png)
+![](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/commentlines.png)
 
 ## 8. Run Application
 
@@ -281,7 +279,7 @@ c. Test your application by going to: [http://localhost:3000/](http://localhost:
 
     Start a conversation with your bot:
 <p align="center">
-      <img width="300" height="200" src="readme_images/conversationsample.png">
+      <img width="300" height="200" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/conversationsample.png">
 </p>
 
 
@@ -295,7 +293,7 @@ You still have one more step if you are planning to use Twilio as the interface.
 2. Edit your .env file to add credentials for Twilio. You can get this information from the dashboard when you get a phone number for Twilio
 
 <p align="center">
-  <img width="300" height="250" src="readme_images/Twilio-dashboard.png">
+  <img width="300" height="250" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/Twilio-dashboard.png">
 </p>
 
   * Set the USE_TWILIO_SMS variable to *true*.
@@ -316,13 +314,13 @@ ngrok http 3000
 You will get a response like the following:
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/ngrok-dashboard.png">
+  <img width="300" height="200" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/ngrok-dashboard.png">
 </p>
 
 Copy the https uri and paste it into the entry field for your SMS Webhook (inside the Twilio dashboard):
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/webhook-dashboard.png">
+  <img width="300" height="200" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/webhook-dashboard.png">
 </p>
 
 
@@ -332,7 +330,7 @@ Copy the https uri and paste it into the entry field for your SMS Webhook (insid
 One can enhance the current application by adding in additional financial services. Xignite, Inc. (http://xignite.com)  provides cloud-based financial market data APIs that work side by side with the IBM Cloud Fintech services.  Specifically, the GetGlobalDelayedQuotes() Rest API is available to provide delayed quotes for a specific global security.
 
 <p align="center">
-  <img width="400" height="150" src="readme_images/Extensions.png">
+  <img width="400" height="150" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/Extensions.png">
 </p>
 
 # Troubleshooting
