@@ -4,12 +4,12 @@
 
 *다른 언어로 보기: [English](README.md)、[中国](README-cn.md).*
 
-이번 개발 과정에서는 사용자가 1) Investment Portfolio 서비스를 사용하여 투자 포트폴리오 및 관련 보유 주식을 조회하고 2) Simulated Instrument Analytics 서비스를 사용하여 특정 시나리오에서 주식 분석을 실행하고 3) 웹 인터페이스와 TwilioSMS 같은 인터페이스 상에서 Watson Conversation 기반의 금융 전문 챗봇을 사용할 수 있는 환경을 만들어보겠습니다.
+이번 개발 과정에서는 사용자가 1) Investment Portfolio 서비스를 사용하여 투자 포트폴리오 및 관련 보유 주식을 조회하고 2) Simulated Instrument Analytics 서비스를 사용하여 특정 시나리오에서 주식 분석을 실행하고 3) 웹 인터페이스와 TwilioSMS 같은 인터페이스 상에서 Watson Assistant for Business 기반의 금융 전문 챗봇을 사용할 수 있는 환경을 만들어보겠습니다.
 
 이 과정을 마치면 다음 방법을 이해할 수 있습니다:
 
-* Watson Conversation을 사용하여 챗봇 대화 생성
-* Watson Conversation 봇에 웹과 Twilio 등 여러 인터페이스 설정
+* Watson Assistant for Business을 사용하여 챗봇 대화 생성
+* Watson Assistant for Business 봇에 웹과 Twilio 등 여러 인터페이스 설정
 * Investment Portfolio 서비스로의 접속, 데이터 로딩 및 저장하기
 * 시나리오에 따라 데이터를 Simulated Instrument Analytics 서비스로 보내고 분석 확인
 
@@ -18,7 +18,7 @@
 </p>
 
 ## 포함된 구성요소
-- Bluemix Watson Conversation
+- Bluemix Watson Assistant for Business
 - Bluemix Cloudant NoSQL DB
 - Bluemix Investment Portfolio
 - Bluemix Simulated Instrument Analytics
@@ -41,7 +41,7 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 2. 앱을 배포할 준비가 완료된 것을 확인할 수 있습니다. 'Deploy'를 누르기 전에 앱 이름, 지역, 조직, 공간이 올바른지 확인해야 합니다.
 ![](readme_images/bm-deploy-step2.png)
 
-3. 툴체인에 앱이 배포됩니다. eclipseIDE를 통해 코드를 편집하는 옵션도 사용할 수 있으며, 필요에 따라 git이 변경됩니다. 
+3. 툴체인에 앱이 배포됩니다. eclipseIDE를 통해 코드를 편집하는 옵션도 사용할 수 있으며, 필요에 따라 git이 변경됩니다.
 ![](readme_images/bm-deploy-step3.png)
 
 4. **배포 단계**(Deploy Stage)를 완료하면 두 단계를 성공적으로 통과한 것으로 표시됩니다.
@@ -49,7 +49,7 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 
 5. 이 과정에서 생성 및 구성되는 앱과 서비스를 확인하려면 Bluemix 대시보드를 사용합니다. 앱의 이름은 personal-wealth-portfolio-mgt-bot 뒤에 특정 문자열이 추가된 형태로 되어 있습니다:
 
- * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Watson Assistant for Business**](https://console.ng.bluemix.net/catalog/services/conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
  * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
  * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
@@ -60,17 +60,17 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## A. Watson Conversation 구성
+## A. Watson Assistant for Business 구성
 
-이 애플리케이션을 사용하려면 Conversation 서비스가 학습되어 있어야 합니다. 학습 데이터는 [`resources/workspace.json`](resources/workspace.json)파일을 활용합니다.
+이 애플리케이션을 사용하려면 Assistant for Business 서비스가 학습되어 있어야 합니다. 학습 데이터는 [`resources/workspace.json`](resources/workspace.json)파일을 활용합니다.
 
   1. Bluemix에 로그인한 상태인지 확인합니다.
 
   2. 왼쪽 상단으로 이동하여 3개의 가로 선을 클릭하고 왼쪽 탐색 패널에서 Dashboard를 선택합니다.
 
-  3. 아래로 스크롤하고 "All Services" 아래에서 사용 중인 Conversation 서비스의 인스턴스를 선택합니다.
+  3. 아래로 스크롤하고 "All Services" 아래에서 사용 중인 Assistant for Business 서비스의 인스턴스를 선택합니다.
 
-  4. 1.	서비스 세부사항 페이지에서 (필요하면) 아래로 스크롤하여 페이지 오른쪽에 있는 녹색의 Launch tool 버튼을 클릭합니다. 이렇게 하면 대화 흐름을 빌드하고 챗봇을 학습할 수 있는 Conversation 서비스 툴이 시작됩니다. 즉, 대화의 흐름을 디자인하고, 학습 시킬 수 있는 Conversation 서비스 작업공간으로 이동하게 됩니다. 하나의 Conversation 서비스 인스턴스 내의 이 작업공간에서 여러 개의 챗봇을 만들 수 있습니다.
+  4. 1.	서비스 세부사항 페이지에서 (필요하면) 아래로 스크롤하여 페이지 오른쪽에 있는 녹색의 Launch tool 버튼을 클릭합니다. 이렇게 하면 대화 흐름을 빌드하고 챗봇을 학습할 수 있는 Assistant for Business 서비스 툴이 시작됩니다. 즉, 대화의 흐름을 디자인하고, 학습 시킬 수 있는 Assistant for Business 서비스 작업공간으로 이동하게 됩니다. 하나의 Assistant for Business 서비스 인스턴스 내의 이 작업공간에서 여러 개의 챗봇을 만들 수 있습니다.
 
   5. 해당 페이지에 새 작업 공간을 “생성”하거나 기존 작업공간을 “가져오는” 옵션이 표시됩니다. 이 예제에서는 미리 만든 챗봇을 “가져올” 예정이므로 “Import" 아이콘 (create 버튼 옆의 화살표 클릭)을 선택합니다.
 
@@ -80,7 +80,7 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 
   6. Choose a file을 클릭하고, 이 프로젝트에 대한 github 저장소 복제본의 리소스 디렉토리로 이동한 후 workspace.json 파일을 선택합니다. 이 파일을 선택하면 “Everything (Intents, Entities, and Dialog” 옵션이 선택됩니다.
 
-  7. Import를 클릭하여 .json 파일을 업로드하고 작업공간을 생성한 후 Conversation 서비스에 사용되는 모델을 학습시킵니다.
+  7. Import를 클릭하여 .json 파일을 업로드하고 작업공간을 생성한 후 Assistant for Business 서비스에 사용되는 모델을 학습시킵니다.
 
 **<span style="color:red">참고:**</span> [C 단계](#c-bluemix에서-환경-변수-구성)에서 사용하기 위해 Workspace ID를 기록해 둡니다.
 
@@ -136,7 +136,7 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 
 1. [저장소 복제](#1-저장소-복제)
 2. [Bluemix 서비스 생성](#2-bluemix-서비스-생성)
-3. [Watson Conversation 구성](#3-watson-conversation-구성)
+3. [Watson Assistant for Business 구성](#3-watson-conversation-구성)
 4. [Investment Portfolio에 데이터 입력](#4-investment-portfolio에-데이터-입력)
 5. [Manifest 파일 구성](#5-manifest-파일-구성)
 6. [.env 파일 구성](#6-env-파일-구성)
@@ -154,20 +154,20 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 
 다음 서비스를 생성합니다:
 
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Watson Assistant for Business**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **참고**
 * 이 과정에서는 4개의 Bluemix 서비스를 사용하기 때문에 인스턴스화한 서비스의 수가 한도에 다다를 수 있습니다. 이 문제를 해결하려면 더 이상 필요하지 않은 서비스를 제거합니다. 또한, 생성한 앱의 수가 한도에 다다른 경우에도 더 이상 필요하지 않은 앱을 제거해야 합니다.
-* Conversation 서비스의 신임 정보 탭에 나와 있는 사용자 ID, 비밀번호를 기록합니다.
+* Assistant for Business 서비스의 신임 정보 탭에 나와 있는 사용자 ID, 비밀번호를 기록합니다.
 
-## 3. Watson Conversation 구성
+## 3. Watson Assistant for Business 구성
 > 참고: ``Deploy to Bluemix`` 부분의 섹션 A를 실행하십시오.
 
 ## 4. Investment Portfolio에 데이터 입력
-> 참고: ``Deploy to Bluemix`` 부분의 섹션 B를 실행하십시오. 
+> 참고: ``Deploy to Bluemix`` 부분의 섹션 B를 실행하십시오.
 
 ## 5. Manifest 파일 구성
 코드가 있는 폴더에서 `manifest.yml` 파일을 편집하고 `portoflio-chat-newbot`을 사용자의 고유한 애플리케이션 이름으로 바꿉니다. 지정한 이름에 따라 `your-application-name.mybluemix.net`의 형태로 애플리케이션의 URL이 결정됩니다. 또한 Bluemix에 생성한 서비스 이름과 일치하도록 서비스 레이블과 서비스 이름을 업데이트합니다. `manifest.yml` 파일의 관련 부분은 다음과 같습니다:
@@ -175,7 +175,7 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
     ```yml
     declared-services:
     conversation:
-       label: Conversation
+       label: Assistant for Business
        plan: free
     Cloudant-service:
        label: cloudantNoSQLDB
@@ -186,7 +186,7 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
        label: fss-scenario-analytics-service
     applications:
         - services:
-        - Conversation
+        - Assistant for Business
         - Cloudant-service
         - investment-portfolio-service
         - instrument-analytics-service
@@ -203,7 +203,7 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 
 1. 다음 명령을 사용하여 샘플 `.env.example` 파일을 복사하는 방법으로 프로젝트 저장소 복제본의 루트 디렉토리에 `.env`파일을 생성합니다:
 
-**참고** 대부분 파일 시스템은 앞에 "." 이 있는 파일을 숨겨진 파일로 인식합니다. Windows 시스템의 경우 [GitBash](https://git-for-windows.github.io/) 또는 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true) 등을 사용합니다. 
+**참고** 대부분 파일 시스템은 앞에 "." 이 있는 파일을 숨겨진 파일로 인식합니다. Windows 시스템의 경우 [GitBash](https://git-for-windows.github.io/) 또는 [Xcopy](https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/xcopy.mspx?mfr=true) 등을 사용합니다.
 
 
   ```none
@@ -334,7 +334,7 @@ https uri를 복사하여 (Twilio 대시보드 상의) SMS Webhook에 대한 입
     cf logs <application-name> --recent
     ```
 
-* 로컬에서 실행하는 경우, 환경 변수가 일치하는지 자세히 확인합니다. Bluemix 서비스 (Conversation, Cloudant, and Discovery)의 신임 정보는 Bluemix의 ``Services`` 메뉴에서 ``Service Credentials`` 옵션을 선택하면 확인할 수 있습니다.
+* 로컬에서 실행하는 경우, 환경 변수가 일치하는지 자세히 확인합니다. Bluemix 서비스 (Assistant for Business, Cloudant, and Discovery)의 신임 정보는 Bluemix의 ``Services`` 메뉴에서 ``Service Credentials`` 옵션을 선택하면 확인할 수 있습니다.
 
 * 또한, 애플리케이션을 디버깅하려면 `https://<사용자 애플리케이션 이름>.mybluemix.net/debug.html`로 이동하여 사용하는 서비스와의 상호작용 세부사항이 담긴 메타데이터가 표시된 패널을 확인합니다.
 
@@ -351,8 +351,8 @@ https uri를 복사하여 (Twilio 대시보드 상의) SMS Webhook에 대한 입
 * 애플리케이션 버전 (`application_version`)
 * 애플리케이션 URIs (`application_uris`)
 
-•	이 데이터는 IBM Bluemix와 여타 Cloud Foundry 플랫폼의 `VCAP_APPLICATION` 환경 변수로부터 수집됩니다. IBM은 해당 데이터를 제공된 예제의 유용한 정도를 가늠하여 지속적으로 개발자 여러분들께 제공하는 컨텐츠를 개선하고자 IBM Bluemix의 샘플 애플리케이션의 개발 관련 항목들을 추적 관찰하고 있습니다. Deployment Tracker서비스를 호출하기 위한 코드가 있는 샘플 애플리케이션만 배포시 추적됩니다. 
+•	이 데이터는 IBM Bluemix와 여타 Cloud Foundry 플랫폼의 `VCAP_APPLICATION` 환경 변수로부터 수집됩니다. IBM은 해당 데이터를 제공된 예제의 유용한 정도를 가늠하여 지속적으로 개발자 여러분들께 제공하는 컨텐츠를 개선하고자 IBM Bluemix의 샘플 애플리케이션의 개발 관련 항목들을 추적 관찰하고 있습니다. Deployment Tracker서비스를 호출하기 위한 코드가 있는 샘플 애플리케이션만 배포시 추적됩니다.
 
 ### 배포 추적 비활성화하기
 
-•	이 저장소의 루트에 있는 `server.js`파일에 위치한 `require('cf-deployment-tracker-client').track();`를 삭제하면 추적을 비활성화할 수 있습니다. 
+•	이 저장소의 루트에 있는 `server.js`파일에 위치한 `require('cf-deployment-tracker-client').track();`를 삭제하면 추적을 비활성화할 수 있습니다.
