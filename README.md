@@ -7,13 +7,13 @@
 
 *Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md), [Português](README-pt.md) .*
 
-In this developer pattern we will create a financial-based Watson Conversation based chatbot
+In this developer pattern we will create a financial-based Watson Assistant based chatbot
 that allows a user to: 1) use an Investment Portfolio service to query his or her investment portfolios and associated holdings 2) use the Simulated Instrument Analytics service to compute analytics on securities under a given scenario. 3) understand how to swap between alternative interfaces:  a) web interface b) TwilioSMS
 
 When the reader has completed this pattern, he or she will understand how to:
 
-* Create a chatbot dialog with Watson Conversation
-* Set up multiple interfaces with the Watson Conversation bot: Web & Twilio
+* Create a chatbot dialog with Watson Assistant
+* Set up multiple interfaces with the Watson Assistant bot: Web & Twilio
 * Access, seed and send data to the Investment Portfolio Service
 * Send data along with a scenario to the Simulated Instrument Analytics service to retrieve analytics
 
@@ -25,7 +25,7 @@ You will need the following accounts and tools:
 * [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
 
 ## Included Components
-- IBM Cloud Watson Conversation
+- IBM Cloud Watson Assistant
 - IBM Cloud Cloudant NoSQL DB
 - IBM Cloud Investment Portfolio
 - IBM Cloud Simulated Instrument Analytics
@@ -56,7 +56,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 5. To see the app and services created and configured for this pattern, use the IBM Cloud dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
 
- * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
  * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
  * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
@@ -67,17 +67,17 @@ Before you start the configuration process, clone the `personal-wealth-portfoli-
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## A. Configure Watson Conversation
+## A. Configure Watson Assistant
 
-The Conversation service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
+The Assistant service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
 
   1. Make sure you are logged into IBM Cloud
 
   2. Navigate to upper left hand side and click on the 3 parallel lines and select Dashboard from the left hand navigation panel.
 
-  3. Scroll down and under "All Services" - select the instance of the Conversation service that you are using
+  3. Scroll down and under "All Services" - select the instance of the Assistant service that you are using
 
-  4. Once on the Service details page, scroll down (if necessary) and click green Launch tool button on the right hand side of the page. This will launch the tooling for the Conversation service, which allows you to build dialog flows and train your chatbot. This should take you to your workspace in the Conversation service which represents a unique set of chat flows and training examples. This allows you to have multiple chatbots within a single instance of the Conversation service.
+  4. Once on the Service details page, scroll down (if necessary) and click green Launch tool button on the right hand side of the page. This will launch the tooling for the Assistant service, which allows you to build dialog flows and train your chatbot. This should take you to your workspace in the Assistant service which represents a unique set of chat flows and training examples. This allows you to have multiple chatbots within a single instance of the Assistant service.
 
   5. Once on the page, you will see the option to either “Create” a new workspace, or “import” an existing one. We are going to “import” a premade chatbot for this example, so select “Import" (click on the arrow next to the create button).
 
@@ -87,7 +87,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   6. Click Choose a file, navigate to the resources directory of your clone of the repository for this project, and select the file workspace.json. Once the file is selected, ensure that the “Everything (Intents, Entities, and Dialog” option is selected.
 
-  7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
+  7. Click Import to upload the .json file to create a workspace and train the model used by the Assistant service.
 
 **<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#c-configuring-your-environment-variables-in-bluemix).
 
@@ -144,7 +144,7 @@ Now you are ready to run your application from IBM Cloud. Select the URL
 
 1. [Clone the repo](#1-clone-the-repo)
 2. [Create IBM Cloud services](#2-create-bluemix-services)
-3. [Configure Watson Conversation](#3-configure-watson-conversation)
+3. [Configure Watson Assistant](#3-configure-watson-conversation)
 4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
 5. [Configure Manifest file](#5-configure-manifest)
 6. [Configure .env file](#6-configure-env-file)
@@ -162,16 +162,16 @@ Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 
 Create the following services:
 
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **Note**
 * Because this pattern uses 4 IBM Cloud services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
-* Record the userid, password from the credentials tab on the Conversation Service.
+* Record the userid, password from the credentials tab on the Assistant Service.
 
-## 3. Configure Watson Conversation
+## 3. Configure Watson Assistant
 > NOTE: Execute section A of the ``Deploy to IBM Cloud`` section
 
 ## 4. Seed Investment Portfolio
@@ -183,7 +183,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     ```yml
     declared-services:
     conversation:
-       label: Conversation
+       label: Assistant
        plan: free
     Cloudant-service:
        label: cloudantNoSQLDB
@@ -194,7 +194,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
        label: fss-scenario-analytics-service
     applications:
         - services:
-        - Conversation
+        - Assistant
         - Cloudant-service
         - investment-portfolio-service
         - instrument-analytics-service
@@ -343,7 +343,7 @@ One can enhance the current application by adding in additional financial servic
 
     * If you are running locally - inspect your environment varibles closely to confirm they match.
 
-    The credentials for IBM Cloud services (Conversation, Cloudant, and Discovery), can
+    The credentials for IBM Cloud services (Assistant, Cloudant, and Discovery), can
     be found in the ``Services`` menu in IBM Cloud, and selecting the ``Service Credentials``
     option.
 

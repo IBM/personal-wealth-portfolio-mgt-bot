@@ -4,12 +4,12 @@
 
 *Ler em outros idiomas: [한국어](README-ko.md).*
 
-Nesta jornada do desenvolvedor, criaremos um chatbot financeiro baseado no Watson Conversation que ajudará o usuário a: 1) usar um serviço Investment Portfolio para consultar suas carteiras de investimentos e capitais associados; 2) usar o serviço Simulated Instrument Analytics para calcular a analytics em valores mobiliários em um cenário específico; 3) entender como alternar entre interfaces alternativas: a) interface da web ou b) TwilioSMS.
+Nesta jornada do desenvolvedor, criaremos um chatbot financeiro baseado no Watson Assistant que ajudará o usuário a: 1) usar um serviço Investment Portfolio para consultar suas carteiras de investimentos e capitais associados; 2) usar o serviço Simulated Instrument Analytics para calcular a analytics em valores mobiliários em um cenário específico; 3) entender como alternar entre interfaces alternativas: a) interface da web ou b) TwilioSMS.
 
 Depois de concluir esta jornada, o leitor saberá como:
 
-* Criar um diálogo de chatbot com o Watson Conversation
-* Configurar várias interfaces com o bot do Watson Conversation: Web e Twilio
+* Criar um diálogo de chatbot com o Watson Assistant
+* Configurar várias interfaces com o bot do Watson Assistant: Web e Twilio
 * Acessar, distribuir e enviar dados para o serviço Investment Portfolio
 * Enviar dados, junto com um cenário, para o serviço Simulated Instrument Analytics a fim de recuperar a analytics
 
@@ -18,7 +18,7 @@ Depois de concluir esta jornada, o leitor saberá como:
 </p>
 
 ## Componentes inclusos
-- Bluemix Watson Conversation
+- Bluemix Watson Assistant
 - Banco de dados NoSQL do Bluemix Cloudant - Bluemix Investment Portfolio
 - Bluemix Simulated Instrument Analytics
 - TwilioSMS
@@ -43,7 +43,7 @@ Use a Nuvem IBM para Serviços Financeiros para determinar o futuro dos serviço
 
 5. Para ver o aplicativo e os serviços criados e configurados para esta jornada, use o painel do Bluemix. O aplicativo se chama personal-wealth-portfolio-mgt-bot com um sufixo exclusivo:
 
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Banco de dados NoSQL do Cloudant**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
@@ -54,17 +54,17 @@ Antes de iniciar o processo de configuração, clone o código `personal-wealth-
 
 `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## A. Configurar o Watson Conversation
+## A. Configurar o Watson Assistant
 
-O serviço Conversation precisa ser treinado para que você possa usar esse aplicativo com êxito. Os dados de treinamento são fornecidos no arquivo: [`resources/workspace.json`](resources/workspace.json)
+O serviço Assistant precisa ser treinado para que você possa usar esse aplicativo com êxito. Os dados de treinamento são fornecidos no arquivo: [`resources/workspace.json`](resources/workspace.json)
 
 1. Confira se você efetuou login no Bluemix
 
 2. Navegue até o canto superior esquerdo, clique nas três linhas paralelas e selecione Dashboard no painel de navegação esquerdo.
 
-3. Role para baixo e, em “All Services”, selecione a instância do serviço Conversation que você está usando
+3. Role para baixo e, em “All Services”, selecione a instância do serviço Assistant que você está usando
 
-4. Na página de detalhes do serviço, role para baixo (se necessário) e clique no botão verde Launch tool, no lado direito da página. Será acionado o conjunto de ferramentas para o serviço Conversation, que permite que você desenvolva fluxos de diálogo e treine seu chatbot. Você deve ser conduzido à sua área de trabalho no serviço Conversation, que representa um conjunto exclusivo de fluxos de bate-papo e exemplos de treinamento. Assim, é possível ter vários chatbots dentro de uma única instância do serviço Conversation.
+4. Na página de detalhes do serviço, role para baixo (se necessário) e clique no botão verde Launch tool, no lado direito da página. Será acionado o conjunto de ferramentas para o serviço Assistant, que permite que você desenvolva fluxos de diálogo e treine seu chatbot. Você deve ser conduzido à sua área de trabalho no serviço Assistant, que representa um conjunto exclusivo de fluxos de bate-papo e exemplos de treinamento. Assim, é possível ter vários chatbots dentro de uma única instância do serviço Assistant.
 
 5. Na página, você verá a opção de criar uma área de trabalho nova (“Create”) ou importar uma existente (“Import”). Vamos importar um chatbot pronto para este exemplo; portanto, selecione “Import” (clique na seta ao lado do botão Create).
 
@@ -74,13 +74,13 @@ O serviço Conversation precisa ser treinado para que você possa usar esse apli
 
   6. Clique em Choose a file, navegue até o diretório de recursos do clone do repositório para esse projeto e selecione o arquivo workspace.json. Depois que o arquivo for selecionado, verifique se a opção “Everything (Intents, Entities, and Dialog)” foi escolhida.
 
-  7. Clique em Import para fazer upload do arquivo .json a fim de criar uma área de trabalho e treinar o modelo usado pelo serviço Conversation.
+  7. Clique em Import para fazer upload do arquivo .json a fim de criar uma área de trabalho e treinar o modelo usado pelo serviço Assistant.
 
   **<span style="color:red">Observação:**</span> registre seu ID da área de trabalho para usar na [Etapa C](#c-configuring-your-environment-variables-in-bluemix).
 
   Para localizar seu ID da área de trabalho após o fim do treinamento, clique nos três pontos verticais localizados no canto superior direito da área de janela Workspace e selecione View details. Após a conclusão do upload, você verá uma nova área de trabalho. Para conectar essa área de trabalho ao nosso aplicativo, precisaremos incluir o ID da área de trabalho nas variáveis de ambiente no painel do aplicativo (se você usou o botão ``deploy to Bluemix`` ou salvou no arquivo “.env” caso esteja implementando``locally``). Salve esse ID.
 
-  *Como opção*, você pode explorar o diálogo do Conversation. Selecione a área de trabalho e escolha a guia **Dialog**. Este é um fragmento do diálogo:
+  *Como opção*, você pode explorar o diálogo do Assistant. Selecione a área de trabalho e escolha a guia **Dialog**. Este é um fragmento do diálogo:
 
 <p align="center">
   <img width="400" height="250" src="readme_images/dialog.png" />
@@ -124,7 +124,7 @@ Agora, você está pronto para executar seu aplicativo do Bluemix. Selecione a U
 
 1. [Clonar o repositório](#1-clone-the-repo)
 2. [Criar serviços do Bluemix](#2-create-bluemix-services)
-3. [Configurar o Watson Conversation](#3-configure-watson-conversation)
+3. [Configurar o Watson Assistant](#3-configure-watson-conversation)
 4. [Distribuir o Investment Portfolio](#4-seed-investment-portfolio)
 5. [Configurar o arquivo Manifest](#5-configure-manifest)
 6. [Configurar o arquivo .env](#6-configure-env-file)
@@ -141,16 +141,16 @@ Clone o `personal-wealth-portfoli-mgt-bot code` localmente. Em um terminal, exec
 
 Crie os serviços a seguir:
 
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Banco de dados NoSQL do Cloudant**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **Observação**
 * Como esta Jornada utiliza quatro serviços do Bluemix, você poderá atingir o limite de número de serviços que foram instanciados. Para evitar isso, remova os serviços dos quais não precisa mais. Além disso, caso atinja o limite de número de aplicativos criados, talvez você precise remover alguns que não são mais necessários.
-* Registre o ID do usuário e a senha da guia Credentials no Serviço Conversation.
+* Registre o ID do usuário e a senha da guia Credentials no Serviço Assistant.
 
-## 3. Configurar o Watson Conversation
+## 3. Configurar o Watson Assistant
 > NOTE: Execute a seção A da seção ``Deploy to Bluemix``
 
 ## 4. Distribuir o Investment Portfolio
@@ -162,7 +162,7 @@ Edite o arquivo `manifest.yml` na pasta que contém seu código e substitua `por
     ```yml
     declared-services:
     conversation:
-      label: Conversation
+      label: Assistant
       plan: free
     Cloudant-service:
       label: cloudantNoSQLDB
@@ -173,7 +173,7 @@ Edite o arquivo `manifest.yml` na pasta que contém seu código e substitua `por
       label: fss-scenario-analytics-service
     applications:
       - services:
-      - Conversation
+      - Assistant
       - Cloudant-service
       - investment-portfolio-service
       - instrument-analytics-service
@@ -316,7 +316,7 @@ Para aprimorar o aplicativo atual, você pode incluir serviços financeiros adic
 
   * Em caso de execução local, inspecione as variáveis de ambiente com atenção para confirmar se correspondem.
 
-  As credenciais para serviços do Bluemix (Conversation, Cloudant e Discovery) podem ser encontradas no menu ``Services``, no Bluemix, ao selecionar a opção ``Service Credentials``.
+  As credenciais para serviços do Bluemix (Assistant, Cloudant e Discovery) podem ser encontradas no menu ``Services``, no Bluemix, ao selecionar a opção ``Service Credentials``.
 
 
   * Uma alternativa é depurar o aplicativo acessando `https://<name of your application>.mybluemix.net/debug.html` para ver um painel que exibe metadados que contêm detalhes sobre a interação com os serviços que estão sendo usados.
