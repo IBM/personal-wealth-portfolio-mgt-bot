@@ -6,7 +6,7 @@
 
 
 
-在本 Code Pattern 中，将创建一个基于 Watson Assistant for Business 的财务方面的聊天机器人，
+在本 Code Pattern 中，将创建一个基于 Watson Assistant 的财务方面的聊天机器人，
 该机器人允许用户执行以下操作：
 1) 使用 Investment Portfolio 服务查询其投资组合和相关财产。
 2) 使用 Simulated Instrument Analytics 服务在给定场景下对证券进行计算分析。
@@ -14,8 +14,8 @@
 
 完成此次 Code Pattern 后，读者将掌握如何：
 
-* 使用 Watson Assistant for Business 创建聊天机器人对话。
-* 设置与 Watson Assistant for Business 机器人交互的多个接口：Web 和 Twilio。
+* 使用 Watson Assistant 创建聊天机器人对话。
+* 设置与 Watson Assistant 机器人交互的多个接口：Web 和 Twilio。
 * 访问 Investment Portfolio 服务，挑选种子数据并将它们发送给该服务。
 * 将数据和一个场景发送到 Simulated Instrument Analytics 服务，以检索分析结果。
 
@@ -24,7 +24,7 @@
 </p>
 
 ## 包含的组件
-- Bluemix Watson Assistant for Business
+- Bluemix Watson Assistant
 - Bluemix Cloudant NoSQL DB
 - Bluemix Investment Portfolio
 - Bluemix Simulated Instrument Analytics
@@ -55,7 +55,7 @@
 
 5.要查看为这个 Code Pattern 创建和配置的应用程序和服务，可以使用 Bluemix 仪表板。该应用程序名为 personal-wealth-portfolio-mgt-bot，带有一个唯一后缀：
 
- * [**Watson Assistant for Business**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
  * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
  * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
@@ -66,17 +66,17 @@
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## A. 配置 Watson Assistant for Business
+## A. 配置 Watson Assistant
 
-必须对 Assistant for Business 服务进行训练，才能成功使用这个应用程序。训练数据在下面的文件中提供：[`resources/workspace.json`](resources/workspace.json)
+必须对 Assistant 服务进行训练，才能成功使用这个应用程序。训练数据在下面的文件中提供：[`resources/workspace.json`](resources/workspace.json)
 
   1.确保您已登录到 Bluemix
 
   2.导航到左上侧，单击 3 条平行线，并从左侧导航面板中选择 Dashboard。
 
-  3.向下滚动，并在 All Services 下选择您要使用的 Assistant for Business 服务的实例
+  3.向下滚动，并在 All Services 下选择您要使用的 Assistant 服务的实例
 
-  4.到达 Service details 页面后，向下滚动（如有必要）并单击页面右侧的绿色 Launch tool 按钮。这将启动 Assistant for Business 服务的工具，使您能够构建对话流并训练您的聊天机器人。这会带您跳转到 Assistant for Business 服务中您的工作区，该工作区代表一组唯一的聊天流和训练示例。这允许您在单个 Assistant for Business 服务内有多个聊天机器人。
+  4.到达 Service details 页面后，向下滚动（如有必要）并单击页面右侧的绿色 Launch tool 按钮。这将启动 Assistant 服务的工具，使您能够构建对话流并训练您的聊天机器人。这会带您跳转到 Assistant 服务中您的工作区，该工作区代表一组唯一的聊天流和训练示例。这允许您在单个 Assistant 服务内有多个聊天机器人。
 
   5.到达该页面后，您会看到“创建”新工作区或“导入”现有工作区的选项。在本例中，我们将“导入”一个已创建的聊天机器人，所以选择“导入”（单击 Create 按钮旁边的箭头）。
 
@@ -86,7 +86,7 @@
 
   6.单击 Choose a file，导航到此项目存储库的克隆版本的 resources 目录，并选择文件 workspace.json。选择该文件后，确保选择了 Everything (Intents, Entities, and Dialog) 选项。
 
-  7.单击 Import 上传该 .json 文件，以创建一个工作区并训练 Assistant for Business 服务使用的模型。
+  7.单击 Import 上传该 .json 文件，以创建一个工作区并训练 Assistant 服务使用的模型。
 
 **<span style="color:red">备注：**</span>记下您的工作区 ID，[第 C 步](#c-configuring-your-environment-variables-in-bluemix) 中将会使用它。
 
@@ -145,7 +145,7 @@ ii.在条目中手动创建财产的示例：
 
 2.[创建 Bluemix 服务](#2-create-bluemix-services)
 
-3.[配置 Watson Assistant for Business](#3-configure-watson-conversation)
+3.[配置 Watson Assistant](#3-configure-watson-conversation)
 
 4.[向 Investment Portfolio 发送种子信息](#4-seed-investment-portfolio)
 
@@ -168,16 +168,16 @@ ii.在条目中手动创建财产的示例：
 
 创建以下服务：
 
-* [**Watson Assistant for Business**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Watson Assistant**](https://console.ng.bluemix.net/catalog/services/conversation)
 * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
 * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
 * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
 
 **备注：**
 * 因为本 Code Pattern 使用了 4 个 Bluemix 服务，您可能达到了已实例化服务数量的限制。要解决此问题，可以删除不再需要的服务。此外，如果达到已创建应用程序数量的限制，可能还需要删除所有不再需要的应用程序。
-* 记录 Assistant for Business 服务的 credentials 选项卡上的用户 ID 和密码。
+* 记录 Assistant 服务的 credentials 选项卡上的用户 ID 和密码。
 
-## 3.配置 Watson Assistant for Business
+## 3.配置 Watson Assistant
 > 备注：执行 ``Deploy to Bluemix`` 部分的 A 部分
 
 ## 4.向 Investment Portfolio 发送种子信息
@@ -189,7 +189,7 @@ ii.在条目中手动创建财产的示例：
     ```yml
     declared-services:
     conversation:
-       label: Assistant for Business
+       label: Assistant
        plan: free
     Cloudant-service:
        label: cloudantNoSQLDB
@@ -200,7 +200,7 @@ ii.在条目中手动创建财产的示例：
        label: fss-scenario-analytics-service
     applications:
         - services:
-        - Assistant for Business
+        - Assistant
         - Cloudant-service
         - investment-portfolio-service
         - instrument-analytics-service
@@ -349,7 +349,7 @@ ngrok http 3000
 
     * 如果您在本地运行，请仔细检查您的环境变量，以确认它们是匹配的。
 
-    Bluemix 服务（Assistant for Business、Cloudant 和 Discovery）的凭证可以在
+    Bluemix 服务（Assistant、Cloudant 和 Discovery）的凭证可以在
     Bluemix 中的 ``Services`` 菜单中找到，然后选择 ``Service Credentials``
     选项。
 
