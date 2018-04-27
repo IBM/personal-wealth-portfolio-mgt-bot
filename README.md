@@ -333,7 +333,7 @@ One can enhance the current application by adding in additional financial servic
   <img width="400" height="150" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/Extensions.png">
 </p>
 
-# Troubleshooting
+# Troubleshooting  
 
     * To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
 
