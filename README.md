@@ -1,7 +1,7 @@
 
 # Personal Wealth Portfolio Management Bot
 
-[![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
+#[![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/#personal-wealth-portfolio-mgt-bot)
 
 *Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md), [Português](README-pt.md) .*
 
