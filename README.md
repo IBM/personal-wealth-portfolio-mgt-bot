@@ -349,7 +349,3 @@ One can enhance the current application by adding in additional financial servic
 # License
 
 [Apache 2.0](LICENSE)
-
-
-## License
-[Apache 2.0](LICENSE)
