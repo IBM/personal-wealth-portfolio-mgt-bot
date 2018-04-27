@@ -26,8 +26,6 @@ var port = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 var http = require('http').Server(app);
 var debug = require('debug')('bot:server');
 
-// Deployment tracking
-require('metrics-tracker-client').track();
 
 // configure express
 app.use(helmet()); //Helmet helps you secure your Express apps

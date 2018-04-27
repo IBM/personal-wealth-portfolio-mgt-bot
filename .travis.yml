@@ -1,7 +1,0 @@
-language: node_js
-dist: trusty
-sudo: required
-node_js: 6
-script:
-- npm test
-before_deploy: npm install -g cf-blue-green
