@@ -347,10 +347,5 @@ One can enhance the current application by adding in additional financial servic
 
     * Alternatively, you can debug the application by going to `https://<name of your application>.mybluemix.net/debug.html` to see a panel that shows metadata which contains details on the interaction with the services being used.
 
-# License
-
-[Apache 2.0](LICENSE)
-
-
 ## License
 [Apache 2.0](LICENSE)

@@ -41,7 +41,7 @@
     "string-template": "^1.0.0",
     "tmp": "^0.0.31",
     "twilio": "^2.11.1",
-    "watson-developer-cloud": "^2.21.1",
+    "watson-developer-cloud": "^3.5.3",
     "bluebird": "^3.4.3",
     "botkit": "^0.2.2",
     "botkit-sms": "^1.0.7",
