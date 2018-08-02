@@ -36,7 +36,7 @@
     "http": "0.0.0",
     "memory-cache": "^0.1.6",
     "numeral": "^2.0.4",
-    "plotly": "^1.0.6",  
+    "plotly": "^1.0.6",
     "request-promise": "^4.1.1",
     "string-template": "^1.0.0",
     "tmp": "^0.0.31",

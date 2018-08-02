@@ -22,7 +22,7 @@ You will need the following accounts and tools:
 * [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
 
 ## Included Components
-- IBM Cloud Watson Conversation
+- IBM Cloud Watson Assistant
 - IBM Cloud Cloudant NoSQL DB
 - IBM Cloud Investment Portfolio
 - IBM Cloud Simulated Instrument Analytics
@@ -53,7 +53,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 5. To see the app and services created and configured for this pattern, use the IBM Cloud dashboard. The app is named personal-wealth-portfolio-mgt-bot with a unique suffix:
 
- * [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+ * [**Watson Assistant**](https://console.bluemix.net/catalog/services/watson-assistant-formerly-conversation)
  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
  * [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
  * [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
@@ -175,7 +175,7 @@ Create the following services:
 > NOTE: Execute section B of the ``Deploy to IBM Cloud`` section
 
 ## 5. Configure Manifest
-Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service lables and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
+Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service labels and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
     declared-services:
@@ -183,7 +183,7 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
        label: Conversation
        plan: free
     Cloudant-service:
-       label: cloudantNoSQLDB
+       label: Cloudant-h0
        plan: Lite
     investment-portfolio-service:
        label: fss-portfolio-service
