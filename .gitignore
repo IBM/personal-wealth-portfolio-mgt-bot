@@ -18,3 +18,8 @@ Thumbs.db
 *.sql
 *.sqlite
 .env
+
+ # backup files #
+######################
+.backup-manifest.yml
+package-lock.json
