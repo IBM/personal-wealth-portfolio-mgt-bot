@@ -18,8 +18,28 @@ Click here to view the [IBM Pattern](https://developer.ibm.com/code/patterns/cre
 
 ## Prerequisites
 You will need the following accounts and tools:
-* [IBM Cloud account](https://console.ng.bluemix.net/registration/)
-* [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started)
+
+### Git Command
+You need the `git` command to download repo to your system.  Download Git at the following link [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+### Curl Command
+The `curl` command is a software package which consists of command line tool and a library for tranferring data using URL syntax. Download curl release from the following link [here](https://curl.haxx.se/dlwiz/)
+### IBM Cloud CLI
+To interact with the hosted offerings, the IBM Cloud CLI will need to be installed beforehand. The latest CLI releases can be found at the link [here](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html#download_install). An install script is maintained at the mentioned link, which can be executed with one of the following commands
+
+```
+# Mac OSX
+curl -fsSL https://clis.ng.bluemix.net/install/osx | sh
+
+# Linux
+curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
+
+# Powershell
+iex(New-Object Net.WebClient).DownloadString('https://clis.ng.bluemix.net/install/powershell')
+```
+After installation is complete, confirm the CLI is working by printing the version like so
+```
+bx -v
+```
 
 ## Included Components
 - IBM Cloud Watson Assistant
@@ -37,7 +57,9 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 ## Deploy to IBM Cloud
 
-[![Deploy to IBM Cloud](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
+Use Ctrl-click on the Deploy to `IBM Cloud` button below to open the deployment process in a separate tab.
+
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
 1. Log in to your IBM Cloud account before deploying. If already logged in, then ignore this step.
 ![Deploy - step 1](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-img.png)
@@ -169,7 +191,8 @@ Create the following services:
 * Record the userid, password from the credentials tab on the Conversation Service.
 
 ## 3. Configure Watson Conversation
-> NOTE: Execute section A of the ``Deploy to IBM Cloud`` section
+
+You can choose to have a workspace dynamically created for you or create one yourself within your IBM Cloud Service. If you choose to create yourself then execute section A of the ``Deploy to IBM Cloud`` section.
 
 ## 4. Seed Investment Portfolio
 > NOTE: Execute section B of the ``Deploy to IBM Cloud`` section
@@ -177,32 +200,34 @@ Create the following services:
 ## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service labels and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
-    ```yml
-    declared-services:
-    conversation:
-       label: Conversation
-       plan: free
-    Cloudant-service:
-       label: Cloudant-h0
-       plan: Lite
-    investment-portfolio-service:
-       label: fss-portfolio-service
-    instrument-analytics:
-       label: fss-scenario-analytics-service
-    applications:
-        - services:
-        - Conversation
-        - Cloudant-service
-        - investment-portfolio-service
-        - instrument-analytics-service
-    name: portfolio-chat-newbot
-    command: npm start
-    path: .
-    memory: 512M
-    instances: 1
-    domain: mybluemix.net
-    disk_quota: 1024M
-    ```
+  ```yml
+  declared-services:
+  Cloudant-service:
+    label: Cloudant-h0
+    plan: Lite
+  Conversation-service:
+    label: WatsonAssistant-us
+    plan: free
+  Investment-Portfolio:
+    label: investmentPortfolio-av
+    plan: fss-portfolio-service-free-plan
+  Simulated-Instrument-Analytics:
+    label: Simulated-Instrument-Analytics-hs
+    plan: fss-scenario-analytics-service-free-plan
+  applications:
+  - services:
+  - Conversation-service
+  - Cloudant-service
+  - Investment-Portfolio
+  - Simulated-Instrument-Analytics
+  name: portfolio-chat-newbot
+  command: npm start
+  path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 1024M
+  ```
 
 ## 6. Configure .env file
 
@@ -223,11 +248,12 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
 
     USE_WEBUI=true
 
-    #CONVERSATION
-    CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
-    CONVERSATION_USERNAME=
-    CONVERSATION_PASSWORD=
-    WORKSPACE_ID=
+    # Uncomment and use either username+password or IAM apikey
+    CONVERSATION_USERNAME=8baa4dc5-1afd-4bf1-992d-2eee3cbac21f
+    CONVERSATION_PASSWORD=Pnu3u23qywMT
+    
+    #Watson Assistant Authentication using IAM
+    #CONVERSATION_IAM_APIKEY=<put assistant IAM apikey here>
 
     #CLOUDANT
     CLOUDANT_URL=
@@ -235,11 +261,11 @@ Edit the `manifest.yml` file in the folder that contains your code and replace `
     #INVESTMENT PORTFOLIO
     CRED_PORTFOLIO_USERID=
     CRED_PORTFOLIO_PWD=
-    URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
+    URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/
 
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
+    CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/
     CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
+    CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=./resources/spdown5_scenario.csv
 
     #TWILIO
     USE_TWILIO=false
