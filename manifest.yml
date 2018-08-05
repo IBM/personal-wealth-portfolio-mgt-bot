@@ -1,20 +1,20 @@
 declared-services:
-  Cloudant-service:
-    label: Cloudant-h0
+  Cloudant-us:
+    label: cloudantNoSQLDB
     plan: Lite
-  Conversation-service:
-    label: WatsonAssistant-us
+  WatsonAssistant-us:
+    label: conversation
     plan: free
   Investment-Portfolio:
-    label: investmentPortfolio-av
+    label: fss-portfolio-service
     plan: fss-portfolio-service-free-plan
   Simulated-Instrument-Analytics:
-    label: Simulated-Instrument-Analytics-hs
+    label: fss-scenario-analytics-service
     plan: fss-scenario-analytics-service-free-plan
 applications:
 - services:
-   - Conversation-service
-   - Cloudant-service
+   - Cloudant-us
+   - WatsonAssistant-us
    - Investment-Portfolio
    - Simulated-Instrument-Analytics
   name: portfolio-chat-newbot
