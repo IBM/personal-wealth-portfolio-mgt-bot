@@ -37,7 +37,7 @@ Use the IBM Cloud for Financial Services to build the future of financial servic
 
 ## Deploy to IBM Cloud
 
-[![Deploy to IBM Cloud](https://metrics-tracker.mybluemix.net/stats/d6bc3e71109a7049ffee8f2ae2c857c9/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
 1. Log in to your IBM Cloud account before deploying. If already logged in, then ignore this step.
 ![Deploy - step 1](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/bm-deploy-img.png)
