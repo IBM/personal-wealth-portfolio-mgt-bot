@@ -83,11 +83,78 @@ Use Ctrl-click on the Deploy to `IBM Cloud` button below to open the deployment 
 
 **Note** There are a few more steps you need to complete before you can run the application.
 
-Before you start the configuration process, clone the `personal-wealth-portfoli-mgt-bot` code locally. In a terminal window, run:
+
+## A. Seed the Investment Portfolio Service
+
+You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password** with the credentials from your IBM Cloud Service.
+
+i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
+
+**NOTE**
+* {service-user-id} is the user id associated with your Portfolio Investment Service
+* {service-user_password} is the password associated with your Portfolio Investment Service
+
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios'`
+
+ii. Example of manually creating holdings in your entry:
+
+`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
+
+
+## C. Configuring your Environment Variables in IBM Cloud
+Before you can actually run the application, you need to manually add two environment variables in IBM Cloud:
+
+Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
+
+
+| Name                                                  | Value                                |
+|-------------------------------------------------------|--------------------------------------|
+| USE_WEBUI                                             | true                                 |
+| CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv     |
+
+Click **Save** to redeploy your application.
+
+## D. Running application from IBM Cloud
+Now you are ready to run your application from IBM Cloud. Select the URL
+![](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/runningappurl.png)
+
+**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in IBM Cloud.
+
+# Running Application Locally
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button
+
+1. [Clone the repo](#1-clone-the-repo)
+2. [Create IBM Cloud services](#2-create-bluemix-services)
+3. [Watson Conversation Service](#3-watson-conversation-service)
+4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
+5. [Configure Manifest file](#5-configure-manifest)
+6. [Configure .env file](#6-configure-env-file)
+7. [Update ``controller.js`` file](#7-update-file)
+8. [Run the application](#8-run-application)
+
+
+## 1. Clone the repo
+
+Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
 
   `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
 
-## A. Configure Watson Conversation
+## 2. Create IBM Cloud services
+
+Create the following services:
+
+* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
+* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
+* [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
+* [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
+
+**Note**
+* Because this pattern uses 4 IBM Cloud services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
+* Record the userid, password from the credentials tab on the Conversation Service.
+
+## 3. Watson Conversation Service
+
+You can choose to have a workspace dynamically created for you or create one yourself within your IBM Cloud Service. If you choose to create yourself, then follow these steps:
 
 The Conversation service must be trained before you can successfully use this application.  The training data is provided in the file: [`resources/workspace.json`](resources/workspace.json)
 
@@ -119,84 +186,8 @@ To find your workspace ID once training has completed, click the three vertical 
   <img width="400" height="250" src="https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/dialog.png">
 </p>
 
-
-## B. Seed the Investment Portfolio Service
-
-You now need to manually seed your Investment Portfolio. For all these steps - replace **userid, password** with the credentials from your IBM Cloud Service.
-
-i. Example of manually creating a portfolio entry in your Portfolio Investment Service:
-
-**NOTE**
-* {service-user-id} is the user id associated with your Portfolio Investment Service
-* {service-user_password} is the password associated with your Portfolio Investment Service
-
-`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "name":"P1", "timestamp": "2017-02-24T19:53:56.830Z", "closed": false, "data": { "manager": "Edward Lam" }}' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios'`
-
-ii. Example of manually creating holdings in your entry:
-
-`curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
-
-
-## C. Configuring your Environment Variables in IBM Cloud
-Before you can actually run the application, you need to manually update three environment variables in IBM Cloud:
-
-Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
-
-**<span style="color:red">Note:</span>** Replace the `Value` for Workspace ID with the one you noted in [Step A](#a-configure-watson-conversation).
-
-
-| Name                                                  | Value                                |
-|-------------------------------------------------------|--------------------------------------|
-| WORKSPACE_ID                                          | 5b4d1d87-a712-4b24-be39-e7090421b014 |
-| USE_WEBUI                                             | true                                 |
-| CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv     |
-
-Click **Save** to redeploy your application.
-
-## D. Running application from IBM Cloud
-Now you are ready to run your application from IBM Cloud. Select the URL
-![](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/runningappurl.png)
-
-**NOTE:** If you get a *not Authorized* message - you need to confirm that the credentials you used match the credentials in IBM Cloud.
-
-# Running Application Locally
-> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button
-
-1. [Clone the repo](#1-clone-the-repo)
-2. [Create IBM Cloud services](#2-create-bluemix-services)
-3. [Configure Watson Conversation](#3-configure-watson-conversation)
-4. [Seed Investment Portfolio](#4-seed-investment-portfolio)
-5. [Configure Manifest file](#5-configure-manifest)
-6. [Configure .env file](#6-configure-env-file)
-7. [Update ``controller.js`` file](#7-update-file)
-8. [Run the application](#8-run-application)
-
-
-## 1. Clone the repo
-
-Clone the `personal-wealth-portfoli-mgt-bot code` locally. In a terminal, run:
-
-  `$ git clone https://github.com/IBM/personal-wealth-portfolio-mgt-bot.git`
-
-## 2. Create IBM Cloud services
-
-Create the following services:
-
-* [**Watson Conversation**](https://console.ng.bluemix.net/catalog/services/conversation)
-* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/)
-* [**Investment Portfolio**](https://console.ng.bluemix.net/catalog/services/investment-portfolio)
-* [**Simulated Instrument Analytics**](https://console.ng.bluemix.net/catalog/services/simulated-instrument-analytics)
-
-**Note**
-* Because this pattern uses 4 IBM Cloud services, you may hit your limit for the number of services you have instantiated. You can get around this by removing services you don't need anymore. Additionally - if you hit the limit on the number of Apps you have created, you may need to also remove any that you don't need anymore.
-* Record the userid, password from the credentials tab on the Conversation Service.
-
-## 3. Configure Watson Conversation
-
-You can choose to have a workspace dynamically created for you or create one yourself within your IBM Cloud Service. If you choose to create yourself then execute section A of the ``Deploy to IBM Cloud`` section.
-
 ## 4. Seed Investment Portfolio
-> NOTE: Execute section B of the ``Deploy to IBM Cloud`` section
+> NOTE: Execute section A of the ``Deploy to IBM Cloud`` section
 
 ## 5. Configure Manifest
 Edit the `manifest.yml` file in the folder that contains your code and replace `portoflio-chat-newbot` with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additional - update the service labels and service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
