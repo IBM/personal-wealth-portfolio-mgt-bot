@@ -101,7 +101,7 @@ ii. Example of manually creating holdings in your entry:
 `curl -X POST -u "{service-user-id}":"{service-user_password}" --header 'Content-Type: application/json' --header 'Accept:application/json' -d '{ "timestamp": "2017-05-05T19:53:56.830Z", "holdings": [ { "asset": "IBM", "quantity": 1500, "instrumentId": "CX_US4592001014_NYQ"}, { "asset": "GE", "quantity": 5000, "instrumentId": "CX_US3696041033_NYQ" }, { "asset": "F", "quantity": 5000, "instrumentId": "CX_US3453708600_NYQ" }, { "asset": "BAC", "quantity": 1800, "instrumentId": "CX_US0605051046_NYS" } ] }' 'https://investment-portfolio.mybluemix.net/api/v1/portfolios/P1/holdings'`
 
 
-## C. Configuring your Environment Variables in IBM Cloud
+## B. Configuring your Environment Variables in IBM Cloud
 Before you can actually run the application, you need to manually add two environment variables in IBM Cloud:
 
 Go to the `runttime` tab of your application.  Scroll to the bottom of the screen and `Add` the following environment variables:
@@ -114,7 +114,7 @@ Go to the `runttime` tab of your application.  Scroll to the bottom of the scree
 
 Click **Save** to redeploy your application.
 
-## D. Running application from IBM Cloud
+## C. Running application from IBM Cloud
 Now you are ready to run your application from IBM Cloud. Select the URL
 ![](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/runningappurl.png)
 
@@ -176,7 +176,7 @@ The Conversation service must be trained before you can successfully use this ap
 
   7. Click Import to upload the .json file to create a workspace and train the model used by the Conversation service.
 
-**<span style="color:red">Note:**</span> Record your Workspace ID to use in [Step C](#c-configuring-your-environment-variables-in-bluemix).
+**<span style="color:red">Note:**</span> Record your Workspace ID to use later.
 
 To find your workspace ID once training has completed, click the three vertical dots in the upper right-hand corner of the Workspace pane, and select View details. Once the upload is complete, you will see a new workspace.  In order to connect this workspace to our application, we will need to include the Workspace ID in our environment variables  on your application dashboard (if you used the ``Deploy to IBM Cloud`` button or save in the file “.env” if you are deploying ``locally``. Save this id.
 
