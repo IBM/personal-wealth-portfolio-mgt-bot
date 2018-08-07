@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Demonstration of a chat-bot for managing a portfolio",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --inspect server.js",
     "test-casper-runner": "NODE_ENV=test node casper-runner.js"
   },
   "author": "Tom Eck",
