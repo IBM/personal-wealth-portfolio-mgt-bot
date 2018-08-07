@@ -17,7 +17,7 @@ applications:
    - WatsonAssistant-us
    - Investment-Portfolio
    - Simulated-Instrument-Analytics
-  name: portfolio-chat-newbot
+  name: ljb-portfolio-chat-newbot
   path: .
   memory: 256M
   instances: 1
