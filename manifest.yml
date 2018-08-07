@@ -18,7 +18,6 @@ applications:
    - Investment-Portfolio
    - Simulated-Instrument-Analytics
   name: portfolio-chat-newbot
-  command: npm start
   path: .
   memory: 256M
   instances: 1
