@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
+
 ![Architecture](https://raw.githubusercontent.com/IBM/personal-wealth-portfolio-mgt-bot/master/readme_images/arch-fin-mgmt.png)
 
 # Personal Wealth Portfolio Management Bot
