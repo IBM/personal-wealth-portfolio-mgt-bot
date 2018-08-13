@@ -19,9 +19,7 @@
 * 访问 Investment Portfolio 服务，挑选种子数据并将它们发送给该服务。
 * 将数据和一个场景发送到 Simulated Instrument Analytics 服务，以检索分析结果。
 
-<p align="center">
-  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
-</p>
+![](images/architecture.png)
 
 ## 包含的组件
 - Bluemix Watson Conversation
@@ -42,16 +40,16 @@
 [![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
 1.在部署之前，请登录到您的 Bluemix 帐户。如果已登录，请忽略此步骤。
-![](readme_images/bm-deploy-img.png)
+![](images/bm-deploy-img.png)
 
 2.我们可以看到，该应用程序已准备好部署，在按下 Deploy 之前，需要确保应用程序名称、地区、组织、空间都是有效的。
-![](readme_images/bm-deploy-step2.png)
+![](images/bm-deploy-step2.png)
 
 3.在 Toolchain 中，已部署了该应用程序。如果需要，也可以选择通过 Eclipse IDE、git changes 来编辑代码。
-![](readme_images/bm-deploy-step3.png)
+![](images/bm-deploy-step3.png)
 
 4.完成 **Deploy Stage** 后，您会看到两个阶段已成功通过
-![](readme_images/bm-deploy-step4.png)
+![](images/bm-deploy-step4.png)
 
 5.要查看为这个 Code Pattern 创建和配置的应用程序和服务，可以使用 Bluemix 仪表板。该应用程序名为 personal-wealth-portfolio-mgt-bot，带有一个唯一后缀：
 
@@ -81,7 +79,7 @@
   5.到达该页面后，您会看到“创建”新工作区或“导入”现有工作区的选项。在本例中，我们将“导入”一个已创建的聊天机器人，所以选择“导入”（单击 Create 按钮旁边的箭头）。
 
   <p align="center">
-    <img width="400" height="250" src="readme_images/ImportArrow.png">
+    <img width="400" height="250" src="images/import_arrow.png">
   </p>
 
   6.单击 Choose a file，导航到此项目存储库的克隆版本的 resources 目录，并选择文件 workspace.json。选择该文件后，确保选择了 Everything (Intents, Entities, and Dialog) 选项。
@@ -95,7 +93,7 @@
 *或者*，如果您想了解对话，也可以选择该工作区并选择 **Dialog** 选项卡，这里给出了该对话的一个片段：
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/dialog.png">
+  <img width="400" height="250" src="images/dialog.png">
 </p>
 
 
@@ -134,7 +132,7 @@ ii.在条目中手动创建财产的示例：
 
 ## D. 从 Bluemix 运行应用程序
 现在您已准备好从 Bluemix 运行您的应用程序。选择 URL
-![](readme_images/runningappurl.png)
+![](images/runningappurl.png)
 
 **备注：** 如果获得 *not Authorized* 消息，则需要确认所使用的凭证与 Bluemix 中的凭证相匹配。
 
@@ -186,32 +184,32 @@ ii.在条目中手动创建财产的示例：
 ## 5.配置清单文件
 编辑包含您的代码的文件夹中的 `manifest.yml` 文件，将 `portoflio-chat-newbot` 替换为您的应用程序的唯一名称。您指定的名称决定了应用程序的 URL，比如 `your-application-name.mybluemix.net`。此外，更新服务标签和服务名称，使它们与 Bluemix 中的信息相匹配。`manifest.yml` 文件的相关部分类似于：
 
-    ```yml
-    declared-services:
-    conversation:
-       label: Conversation
-       plan: free
-    Cloudant-service:
-       label: cloudantNoSQLDB
-       plan: Lite
-    investment-portfolio-service:
-       label: fss-portfolio-service
-    instrument-analytics:
-       label: fss-scenario-analytics-service
-    applications:
-        - services:
-        - Conversation
-        - Cloudant-service
-        - investment-portfolio-service
-        - instrument-analytics-service
-    name: portfolio-chat-newbot
-    command: npm start
-    path: .
-    memory: 512M
-    instances: 1
-    domain: mybluemix.net
-    disk_quota: 1024M
-    ```
+  ```yml
+  declared-services:
+  conversation:
+      label: Conversation
+      plan: free
+  Cloudant-service:
+      label: cloudantNoSQLDB
+      plan: Lite
+  investment-portfolio-service:
+      label: fss-portfolio-service
+  instrument-analytics:
+      label: fss-scenario-analytics-service
+  applications:
+      - services:
+      - Conversation
+      - Cloudant-service
+      - investment-portfolio-service
+      - instrument-analytics-service
+  name: portfolio-chat-newbot
+  command: npm start
+  path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 1024M
+  ```
 
 ## 6.配置 .env 文件
 
@@ -228,43 +226,43 @@ ii.在条目中手动创建财产的示例：
 
     `.env` 文件看起来将类似于：
 
-    ```none
+  ```none
 
-    USE_WEBUI=true
+  USE_WEBUI=true
 
-    #CONVERSATION
-    CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
-    CONVERSATION_USERNAME=
-    CONVERSATION_PASSWORD=
-    WORKSPACE_ID=
+  #CONVERSATION
+  CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
+  CONVERSATION_USERNAME=
+  CONVERSATION_PASSWORD=
+  WORKSPACE_ID=
 
-    #CLOUDANT
-    CLOUDANT_URL=
+  #CLOUDANT
+  CLOUDANT_URL=
 
-    #INVESTMENT PORTFOLIO
-    CRED_PORTFOLIO_USERID=
-    CRED_PORTFOLIO_PWD=
-    URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
+  #INVESTMENT PORTFOLIO
+  CRED_PORTFOLIO_USERID=
+  CRED_PORTFOLIO_PWD=
+  URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
 
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
 
-    #TWILIO
-    USE_TWILIO=false
-    USE_TWILIO_SMS=false
-    TWILIO_ACCOUNT_SID=
-    TWILIO_AUTH_TOKEN=
-    TWILIO_API_KEY=
-    TWILIO_API_SECRET=
-    TWILIO_IPM_SERVICE_SID=
-    TWILIO_NUMBER=
-    ```
+  #TWILIO
+  USE_TWILIO=false
+  USE_TWILIO_SMS=false
+  TWILIO_ACCOUNT_SID=
+  TWILIO_AUTH_TOKEN=
+  TWILIO_API_KEY=
+  TWILIO_API_SECRET=
+  TWILIO_IPM_SERVICE_SID=
+  TWILIO_NUMBER=
+  ```
 
 ## 7.更新文件
 
 一个额外的步骤是，注释掉 Controller 文件中设置 Investment Portfolio 服务的用户 ID 和密码的几行（第 66-70 行）
-![](readme_images/commentlines.png)
+![](images/commentlines.png)
 
 ## 8.运行应用程序
 
@@ -285,7 +283,7 @@ c. 转到以下地址来测试您的应用程序：[http://localhost:3000/](http
 
     启动一个与您的机器人的对话：
 <p align="center">
-      <img width="300" height="200" src="readme_images/conversationsample.png">
+      <img width="300" height="200" src="images/conversationsample.png">
 </p>
 
 
@@ -299,7 +297,7 @@ c. 转到以下地址来测试您的应用程序：[http://localhost:3000/](http
 2.编辑 .env 文件来添加 Twilio 的凭证。可以在获取 Twilio 电话号码时从仪表板获取此信息。
 
 <p align="center">
-  <img width="300" height="250" src="readme_images/Twilio-dashboard.png">
+  <img width="300" height="250" src="images/twilio-dashboard.png">
 </p>
 
   * 将 USE_TWILIO_SMS 变量设置为 *true*。
@@ -320,13 +318,13 @@ ngrok http 3000
 您将获得类似下面这样的响应：
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/ngrok-dashboard.png">
+  <img width="300" height="200" src="images/ngrok-dashboard.png">
 </p>
 
 复制 https uri 并将它粘贴到（Twilio 仪表板中）您的 SMS Webhook 的 entry 字段中：
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/webhook-dashboard.png">
+  <img width="300" height="200" src="images/webhook-dashboard.png">
 </p>
 
 
@@ -336,7 +334,7 @@ ngrok http 3000
 可添加其他金融服务来增强当前应用程序。Xignite, Inc. (http://xignite.com) 提供了基于云的金融市场数据 API，它们可与 Bluemix Fintech 服务并列运行。具体来讲，GetGlobalDelayedQuotes() Rest API 可以提供特定全球证券的延迟报价。
 
 <p align="center">
-  <img width="400" height="150" src="readme_images/Extensions.png">
+  <img width="400" height="150" src="images/extensions.png">
 </p>
 
 # 故障排除 
@@ -359,18 +357,3 @@ ngrok http 3000
 # 许可
 
 [Apache 2.0](LICENSE)
-
-# 隐私声明
-
-这个 Node Web 应用程序样本包含跟踪部署到 Bluemix 和其他 Cloud Foundry 平台的部署过程的代码。每次部署时，都会将以下信息发送到 Deployment Tracker 服务：
-
-* 应用程序名称 (`application_name`)
-* 空间 ID (`space_id`)
-* 应用程序版本 (`application_version`)
-* 应用程序 URI (`application_uris`)
-
-此数据收集自 IBM Bluemix 和其他 Cloud Foundry 平台中的 `VCAP_APPLICATION` 环境变量。IBM 使用此数据跟踪与将样本应用程序部署到 IBM Bluemix 相关的指标。仅有那些包含代码以对 Deployment Tracker 服务执行 ping 操作的样本应用程序的部署过程才会被跟踪。
-
-### 禁用部署跟踪
-
-通过从此存储库根目录中的 `server.js` 文件开头部分删除 `require('cf-deployment-tracker-client').track();`，可以禁用部署跟踪。

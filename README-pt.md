@@ -13,9 +13,7 @@ Depois de concluir esta jornada, o leitor saberá como:
 * Acessar, distribuir e enviar dados para o serviço Investment Portfolio
 * Enviar dados, junto com um cenário, para o serviço Simulated Instrument Analytics a fim de recuperar a analytics
 
-<p align="center">
-  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png" />
-</p>
+![](images/architecture.png)
 
 ## Componentes inclusos
 - Bluemix Watson Conversation
@@ -33,13 +31,13 @@ Use a Nuvem IBM para Serviços Financeiros para determinar o futuro dos serviço
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
-1. Efetue login na sua conta do Bluemix antes de implementar. Caso já tenha efetuado login, ignore esta etapa. ![](readme_images/bm-deploy-img.png)
+1. Efetue login na sua conta do Bluemix antes de implementar. Caso já tenha efetuado login, ignore esta etapa. ![](images/bm-deploy-img.png)
 
-2. Podemos ver que o aplicativo está pronto para ser implementado e precisamos verificar se o nome, a região, a organização e o espaço dele são válidos antes de pressionar 'Deploy'. ![](readme_images/bm-deploy-step2.png)
+2. Podemos ver que o aplicativo está pronto para ser implementado e precisamos verificar se o nome, a região, a organização e o espaço dele são válidos antes de pressionar 'Deploy'. ![](images/bm-deploy-step2.png)
 
-3. Na cadeia de ferramentas, o aplicativo é implementado. Também existe a opção de editar o código por meio do eclipseIDE; o git muda, se necessário. ![](readme_images/bm-deploy-step3.png)
+3. Na cadeia de ferramentas, o aplicativo é implementado. Também existe a opção de editar o código por meio do eclipseIDE; o git muda, se necessário. ![](images/bm-deploy-step3.png)
 
-4. Duas fases devem passar com êxito após a conclusão da **Fase de Implementação** ![](readme_images/bm-deploy-step4.png)
+4. Duas fases devem passar com êxito após a conclusão da **Fase de Implementação** ![](images/bm-deploy-step4.png)
 
 5. Para ver o aplicativo e os serviços criados e configurados para esta jornada, use o painel do Bluemix. O aplicativo se chama personal-wealth-portfolio-mgt-bot com um sufixo exclusivo:
 
@@ -69,7 +67,7 @@ O serviço Conversation precisa ser treinado para que você possa usar esse apli
 5. Na página, você verá a opção de criar uma área de trabalho nova (“Create”) ou importar uma existente (“Import”). Vamos importar um chatbot pronto para este exemplo; portanto, selecione “Import” (clique na seta ao lado do botão Create).
 
   <p align="center">
-    <img width="400" height="250" src="readme_images/ImportArrow.png" />
+    <img width="400" height="250" src="images/import_arrow.png" />
   </p>
 
   6. Clique em Choose a file, navegue até o diretório de recursos do clone do repositório para esse projeto e selecione o arquivo workspace.json. Depois que o arquivo for selecionado, verifique se a opção “Everything (Intents, Entities, and Dialog)” foi escolhida.
@@ -83,7 +81,7 @@ O serviço Conversation precisa ser treinado para que você possa usar esse apli
   *Como opção*, você pode explorar o diálogo do Conversation. Selecione a área de trabalho e escolha a guia **Dialog**. Este é um fragmento do diálogo:
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/dialog.png" />
+  <img width="400" height="250" src="images/dialog.png" />
 </p>
 
 
@@ -110,12 +108,15 @@ Acesse a guia `runttime` do seu aplicativo. Role até a parte inferior da tela e
 
 **<span style="color:red">Observação:</span>** substitua`Value` referente ao ID da Área de Trabalho pelo que você anotou na [Etapa A](#a-configure-watson-conversation).
 
-| Nome | Valor | |-------------------------------------------------------|--------------------------------------| | WORKSPACE_ID | 5b4d1d87-a712-4b24-be39-e7090421b014 | | USE_WEBUI | true | | CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv |
+| Nome | Valor |
+|-------------------------------------------------------|--------------------------------------|
+| WORKSPACE_ID | 5b4d1d87-a712-4b24-be39-e7090421b014 | | USE_WEBUI | true |
+| CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME | ./resources/spdown5_scenario.csv |
 
 Clique em **Save** para implementar seu aplicativo novamente.
 
 ## D. Executando um aplicativo do Bluemix
-Agora, você está pronto para executar seu aplicativo do Bluemix. Selecione a URL ![](readme_images/runningappurl.png)
+Agora, você está pronto para executar seu aplicativo do Bluemix. Selecione a URL ![](images/runningappurl.png)
 
 **OBSERVAÇÃO:** se receber uma mensagem *not Authorized*, você precisará confirmar se as credenciais utilizadas correspondem às credenciais do Bluemix.
 
@@ -159,32 +160,32 @@ Crie os serviços a seguir:
 ## 5. Configurar o Manifest
 Edite o arquivo `manifest.yml` na pasta que contém seu código e substitua `portoflio-chat-newbot` por um nome exclusivo para seu aplicativo. O nome especificado determina a URL do aplicativo, como `your-application-name.mybluemix.net`. Adicional: atualize as etiquetas de serviço e os nomes de serviço para que correspondam ao que você tem no Bluemix. A parte relevante do arquivo `manifest.yml` tem esta aparência:
 
-    ```yml
-    declared-services:
-    conversation:
-      label: Conversation
-      plan: free
-    Cloudant-service:
-      label: cloudantNoSQLDB
-      plan: Lite
-    investment-portfolio-service:
-      label: fss-portfolio-service
-    instrument-analytics:
-      label: fss-scenario-analytics-service
-    applications:
-      - services:
-      - Conversation
-      - Cloudant-service
-      - investment-portfolio-service
-      - instrument-analytics-service
-    name: portfolio-chat-newbot
-    command: npm start
-    path: .
-    memory: 512M
-    instances: 1
-    domain: mybluemix.net
-    disk_quota: 1024M
-    ```
+  ```yml
+  declared-services:
+  conversation:
+    label: Conversation
+    plan: free
+  Cloudant-service:
+    label: cloudantNoSQLDB
+    plan: Lite
+  investment-portfolio-service:
+    label: fss-portfolio-service
+  instrument-analytics:
+    label: fss-scenario-analytics-service
+  applications:
+    - services:
+    - Conversation
+    - Cloudant-service
+    - investment-portfolio-service
+    - instrument-analytics-service
+  name: portfolio-chat-newbot
+  command: npm start
+  path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 1024M
+  ```
 
 ## 6. Configurar o arquivo .env
 
@@ -234,7 +235,7 @@ Edite o arquivo `manifest.yml` na pasta que contém seu código e substitua `por
 
 ## 7. Atualizar o arquivo
 
-Uma etapa adicional é a necessidade de comentar duas linhas no arquivo do Controlador para definir o ID do usuário e a senha do serviço Investment Portfolio (linhas 66-70) ![](readme_images/commentlines.png)
+Uma etapa adicional é a necessidade de comentar duas linhas no arquivo do Controlador para definir o ID do usuário e a senha do serviço Investment Portfolio (linhas 66-70) ![](images/commentlines.png)
 
 ## 8. Executar o aplicativo a. Instale as dependências de que seu aplicativo precisa:
 
@@ -252,7 +253,7 @@ c. Para testar seu aplicativo, acesse: [http://localhost:3000/](http://localhost
 
 Inicie uma conversa com seu bot:
 <p align="center">
-      <img width="300" height="200" src="readme_images/conversationsample.png" />
+      <img width="300" height="200" src="images/conversationsample.png" />
 </p>
 
 
@@ -266,7 +267,7 @@ Há mais uma etapa caso você planeje usar o Twilio como interface. Precisamos a
 2. Edite o arquivo .env para incluir credenciais para o Twilio. É possível obter essas informações no painel ao obter um número telefônico para o Twilio.
 
 <p align="center">
-  <img width="300" height="250" src="readme_images/Twilio-dashboard.png" />
+  <img width="300" height="250" src="images/twilio-dashboard.png" />
 </p>
 
   * Defina a variável USE_TWILIO_SMS como *true*.
@@ -287,13 +288,13 @@ Há mais uma etapa caso você planeje usar o Twilio como interface. Precisamos a
   Você receberá uma resposta parecida com esta:
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/ngrok-dashboard.png" />
+  <img width="300" height="200" src="images/ngrok-dashboard.png" />
 </p>
 
 Copie o URI https e cole-o no campo de entrada do Webhook de SMS (dentro do painel do Twilio):
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/webhook-dashboard.png" />
+  <img width="300" height="200" src="images/webhook-dashboard.png" />
 </p>
 
 
@@ -303,7 +304,7 @@ Copie o URI https e cole-o no campo de entrada do Webhook de SMS (dentro do pain
 Para aprimorar o aplicativo atual, você pode incluir serviços financeiros adicionais. A Xignite, Inc. (http://xignite.com) fornece APIs de dados do mercado financeiro com base em Cloud que funcionam junto com os serviços de FinTech do Bluemix. Especificamente, a API Rest GetGlobalDelayedQuotes() está disponível para fornecer cotações atrasadas para um valor mobiliário global determinado.
 
 <p align="center">
-  <img width="400" height="150" src="readme_images/Extensions.png" />
+  <img width="400" height="150" src="images/extensions.png" />
 </p>
 
 # Resolução de Problemas
@@ -324,18 +325,3 @@ Para aprimorar o aplicativo atual, você pode incluir serviços financeiros adic
 # Licença
 
 [Apache 2.0](LICENÇA)
-
-# Aviso de Privacidade
-
-Este aplicativo da web de amostra de nó inclui código para rastrear implementações no Bluemix e em outras plataformas do Cloud Foundry. As informações a seguir são enviadas para um serviço de Rastreador da Implementação em cada implementação:
-
-* Nome do Aplicativo (`application_name`)
-* ID do Espaço (`space_id`)
-* Versão do Aplicativo (`application_version`)
-* URIs do Aplicativo (`application_uris`)
-
-Esses dados são coletados a partir da variável de ambiente `VCAP_APPLICATION` no IBM Bluemix e em outras plataformas do Cloud Foundry. Esses dados são utilizados pela IBM para o acompanhamento de métricas a respeito de implementações dos mesmos aplicativos no IBM Bluemix. Somente implementações de aplicativos de amostra que incluem código para fazer ping do serviço de Rastreador da Implementação serão acompanhadas.
-
-### Desativando o acompanhamento da implementação
-
-Para desativar o acompanhamento da implementação, remova `require('cf-deployment-tracker-client').track();` do início do arquivo `server.js` na raiz desse repositório.
