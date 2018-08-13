@@ -4,7 +4,9 @@
   "description": "Demonstration of a chat-bot for managing a portfolio",
   "scripts": {
     "start": "node server.js",
-    "test-casper-runner": "NODE_ENV=test node casper-runner.js"
+    "test-casper-runner": "NODE_ENV=test node casper-runner.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "author": "Tom Eck",
   "contributors": [
