@@ -13,9 +13,7 @@
 * Investment Portfolio 서비스로의 접속, 데이터 로딩 및 저장하기
 * 시나리오에 따라 데이터를 Simulated Instrument Analytics 서비스로 보내고 분석 확인
 
-<p align="center">
-  <img width="800" height="400" src="readme_images/arch-fin-mgmt.png">
-</p>
+![](images/architecture.png)
 
 ## 포함된 구성요소
 - Bluemix Watson Conversation
@@ -36,16 +34,16 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/personal-wealth-portfolio-mgt-bot)
 
 1. 배포 전에 Bluemix 계정에 로그인합니다. 이미 로그인한 상태이면 이 단계를 무시합니다.
-![](readme_images/bm-deploy-img.png)
+![](images/bm-deploy-img.png)
 
 2. 앱을 배포할 준비가 완료된 것을 확인할 수 있습니다. 'Deploy'를 누르기 전에 앱 이름, 지역, 조직, 공간이 올바른지 확인해야 합니다.
-![](readme_images/bm-deploy-step2.png)
+![](images/bm-deploy-step2.png)
 
 3. 툴체인에 앱이 배포됩니다. eclipseIDE를 통해 코드를 편집하는 옵션도 사용할 수 있으며, 필요에 따라 git이 변경됩니다. 
-![](readme_images/bm-deploy-step3.png)
+![](images/bm-deploy-step3.png)
 
 4. **배포 단계**(Deploy Stage)를 완료하면 두 단계를 성공적으로 통과한 것으로 표시됩니다.
-![](readme_images/bm-deploy-step4.png)
+![](images/bm-deploy-step4.png)
 
 5. 이 과정에서 생성 및 구성되는 앱과 서비스를 확인하려면 Bluemix 대시보드를 사용합니다. 앱의 이름은 personal-wealth-portfolio-mgt-bot 뒤에 특정 문자열이 추가된 형태로 되어 있습니다:
 
@@ -75,7 +73,7 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
   5. 해당 페이지에 새 작업 공간을 “생성”하거나 기존 작업공간을 “가져오는” 옵션이 표시됩니다. 이 예제에서는 미리 만든 챗봇을 “가져올” 예정이므로 “Import" 아이콘 (create 버튼 옆의 화살표 클릭)을 선택합니다.
 
   <p align="center">
-    <img width="400" height="250" src="readme_images/ImportArrow.png">
+    <img width="400" height="250" src="images/import_arrow.png">
   </p>
 
   6. Choose a file을 클릭하고, 이 프로젝트에 대한 github 저장소 복제본의 리소스 디렉토리로 이동한 후 workspace.json 파일을 선택합니다. 이 파일을 선택하면 “Everything (Intents, Entities, and Dialog” 옵션이 선택됩니다.
@@ -89,7 +87,7 @@ IBM Cloud for Financial Services를 사용하고 Watson 및 개발자 스타터 
 *원하는 경우*, 대화 내역을 탐색할 수 있습니다. 작업공간을 선택하고 **Dialog** 탭을 선택합니다. 대화의 일부 모습은 다음과 같습니다:
 
 <p align="center">
-  <img width="400" height="250" src="readme_images/dialog.png">
+  <img width="400" height="250" src="images/dialog.png">
 </p>
 
 
@@ -127,7 +125,7 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 
 ## D. Bluemix에서 애플리케이션 실행
 이제 Bluemix에서 애플리케이션을 실행할 준비가 되었습니다. URL을 선택합니다.
-![](readme_images/runningappurl.png)
+![](images/runningappurl.png)
 
 **참고:** 권한 없슴(*not Authorized*) 메시지가 표시되면, 사용한 신임 정보가 Bluemix의 신임 정보와 일치하는지 확인해야 합니다.
 
@@ -172,32 +170,32 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 ## 5. Manifest 파일 구성
 코드가 있는 폴더에서 `manifest.yml` 파일을 편집하고 `portoflio-chat-newbot`을 사용자의 고유한 애플리케이션 이름으로 바꿉니다. 지정한 이름에 따라 `your-application-name.mybluemix.net`의 형태로 애플리케이션의 URL이 결정됩니다. 또한 Bluemix에 생성한 서비스 이름과 일치하도록 서비스 레이블과 서비스 이름을 업데이트합니다. `manifest.yml` 파일의 관련 부분은 다음과 같습니다:
 
-    ```yml
-    declared-services:
-    conversation:
-       label: Conversation
-       plan: free
-    Cloudant-service:
-       label: cloudantNoSQLDB
-       plan: Lite
-    investment-portfolio-service:
-       label: fss-portfolio-service
-    instrument-analytics:
-       label: fss-scenario-analytics-service
-    applications:
-        - services:
-        - Conversation
-        - Cloudant-service
-        - investment-portfolio-service
-        - instrument-analytics-service
-    name: portfolio-chat-newbot
-    command: npm start
-    path: .
-    memory: 512M
-    instances: 1
-    domain: mybluemix.net
-    disk_quota: 1024M
-    ```
+  ```yml
+  declared-services:
+  conversation:
+      label: Conversation
+      plan: free
+  Cloudant-service:
+      label: cloudantNoSQLDB
+      plan: Lite
+  investment-portfolio-service:
+      label: fss-portfolio-service
+  instrument-analytics:
+      label: fss-scenario-analytics-service
+  applications:
+      - services:
+      - Conversation
+      - Cloudant-service
+      - investment-portfolio-service
+      - instrument-analytics-service
+  name: portfolio-chat-newbot
+  command: npm start
+  path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 1024M
+  ```
 
 ## 6. .env 파일 구성
 
@@ -212,45 +210,45 @@ ii. 사용자 항목에 보유 주식을 수동으로 생성하기 예제:
 
   [2 단계](#2-bluemix-서비스-생성)에서 여러분이 만드는 서비스마다 Bluemix의 신임 정보로 신임 정보란을 업데이트 합니다.
 
-    The `.env` file will look something like the following:
+  The `.env` file will look something like the following:
 
-    ```none
+  ```none
 
-    USE_WEBUI=true
+  USE_WEBUI=true
 
-    #CONVERSATION
-    CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
-    CONVERSATION_USERNAME=
-    CONVERSATION_PASSWORD=
-    WORKSPACE_ID=
+  #CONVERSATION
+  CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
+  CONVERSATION_USERNAME=
+  CONVERSATION_PASSWORD=
+  WORKSPACE_ID=
 
-    #CLOUDANT
-    CLOUDANT_URL=
+  #CLOUDANT
+  CLOUDANT_URL=
 
-    #INVESTMENT PORTFOLIO
-    CRED_PORTFOLIO_USERID=
-    CRED_PORTFOLIO_PWD=
-    URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
+  #INVESTMENT PORTFOLIO
+  CRED_PORTFOLIO_USERID=
+  CRED_PORTFOLIO_PWD=
+  URL_GET_PORTFOLIO_HOLDINGS=https://investment-portfolio.mybluemix.net/api/v1/portfolios
 
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
-    CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_URL=https://fss-analytics.mybluemix.net/api/v1/scenario/instrument
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_ACCESSTOKEN=
+  CRED_SIMULATED_INSTRUMENT_ANALYTICS_SCENARIO_FILENAME=
 
-    #TWILIO
-    USE_TWILIO=false
-    USE_TWILIO_SMS=false
-    TWILIO_ACCOUNT_SID=
-    TWILIO_AUTH_TOKEN=
-    TWILIO_API_KEY=
-    TWILIO_API_SECRET=
-    TWILIO_IPM_SERVICE_SID=
-    TWILIO_NUMBER=
-    ```
+  #TWILIO
+  USE_TWILIO=false
+  USE_TWILIO_SMS=false
+  TWILIO_ACCOUNT_SID=
+  TWILIO_AUTH_TOKEN=
+  TWILIO_API_KEY=
+  TWILIO_API_SECRET=
+  TWILIO_IPM_SERVICE_SID=
+  TWILIO_NUMBER=
+  ```
 
 ## 7. 파일 업데이트
 
 추가 단계로, Controller 파일에서 두 개 행을 주석 처리하여 investment portfolio 서비스의 사용자 ID 및 비밀번호를 설정해야 합니다(66-70행).
-![](readme_images/commentlines.png)
+![](images/commentlines.png)
 
 ## 8. 애플리케이션 실행
 
@@ -271,7 +269,7 @@ c. [http://localhost:3000/](http://localhost:3000/)로 이동하여 애플리케
 
     Start a conversation with your bot:
 <p align="center">
-      <img width="300" height="200" src="readme_images/conversationsample.png">
+      <img width="300" height="200" src="images/conversationsample.png">
 </p>
 
 
@@ -286,7 +284,7 @@ Twilio를 인터페이스로 사용하려는 경우, 단계가 하나 더 남아
 
 
 <p align="center">
-  <img width="300" height="250" src="readme_images/Twilio-dashboard.png">
+  <img width="300" height="250" src="images/twilio-dashboard.png">
 </p>
 
   * USE_TWILIO_SMS 변수를 *true*로 설정합니다
@@ -307,13 +305,13 @@ ngrok http 3000
 다음과 같은 응답이 나타납니다:
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/ngrok-dashboard.png">
+  <img width="300" height="200" src="images/ngrok-dashboard.png">
 </p>
 
 https uri를 복사하여 (Twilio 대시보드 상의) SMS Webhook에 대한 입력 필드에 붙여 넣습니다:
 
 <p align="center">
-  <img width="300" height="200" src="readme_images/webhook-dashboard.png">
+  <img width="300" height="200" src="images/webhook-dashboard.png">
 </p>
 
 
@@ -323,7 +321,7 @@ https uri를 복사하여 (Twilio 대시보드 상의) SMS Webhook에 대한 입
 금융 서비스를 추가하여 현재 애플리케이션을 확장할 수 있습니다. Xignite, Inc.(http://xignite.com)는 Bluemix Fintech 서비스와 매끄럽게 연동되는 클라우드 기반 금융 시장 데이터 API를 제공합니다. 특히, 특정 글로벌 주식의 주가 동향을 시간차를 두고 알 수 있는 GetGlobalDelayedQuotes() Rest API가 지원됩니다.
 
 <p align="center">
-  <img width="400" height="150" src="readme_images/Extensions.png">
+  <img width="400" height="150" src="images/extensions.png">
 </p>
 
 # 문제점 해결
@@ -341,18 +339,3 @@ https uri를 복사하여 (Twilio 대시보드 상의) SMS Webhook에 대한 입
 # 라이센스
 
 [Apache 2.0](LICENSE)
-
-# 개인정보 보호정책
-
-이 노드 샘플 웹 애플리케이션에는 Bluemix 및 다른 Cloud Foundry 플랫폼에 대한 배치를 추적할 수 있는 코드가 포함되어 있습니다. 배치할 때마다 다음 정보가 Deployment Tracker 서비스로 전송됩니다:
-
-* 애플리케이션 이름 (`application_name`)
-* Space ID (`space_id`)
-* 애플리케이션 버전 (`application_version`)
-* 애플리케이션 URIs (`application_uris`)
-
-•	이 데이터는 IBM Bluemix와 여타 Cloud Foundry 플랫폼의 `VCAP_APPLICATION` 환경 변수로부터 수집됩니다. IBM은 해당 데이터를 제공된 예제의 유용한 정도를 가늠하여 지속적으로 개발자 여러분들께 제공하는 컨텐츠를 개선하고자 IBM Bluemix의 샘플 애플리케이션의 개발 관련 항목들을 추적 관찰하고 있습니다. Deployment Tracker서비스를 호출하기 위한 코드가 있는 샘플 애플리케이션만 배포시 추적됩니다. 
-
-### 배포 추적 비활성화하기
-
-•	이 저장소의 루트에 있는 `server.js`파일에 위치한 `require('cf-deployment-tracker-client').track();`를 삭제하면 추적을 비활성화할 수 있습니다. 
