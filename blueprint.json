@@ -1,0 +1,53 @@
+{
+    "name": "Personal Wealth Portfolio Management Chat Bot",
+    "description": "Use IBM Cloud financial services to demonstrates using multiple interfaces (Twilio & WebUI) with Watson Conversation interacting with a Cloudant NoSQL database.",
+    "thumbnailURL": "blueprint/thumbnail.svg",
+    "appIconURL": "blueprint/appicon.svg",
+    "type": "WEB",
+    "tags": [
+        "devex"
+    ],
+    "generators": {
+        "node": [
+            "generator-starterkit-content-downloader",
+            "generator-ibm-cloud-enablement",
+            "generator-ibm-service-enablement",
+            "generator-git-starterkit-credentials-builder"
+        ]
+    },
+    "generatorOptions": {
+        "generator-git-starterkit-credentials-builder": {
+            "version": "0.x.x",
+            "scope": "@arf"
+        },
+        "generator-ibm-cloud-enablement": {
+            "version": "1.0.x",
+            "options": {
+                "port": "3000"
+            }
+        },
+        "generator-ibm-service-enablement": {
+            "version": "2.3.x"
+        },
+        "generator-starterkit-content-downloader": {
+            "version": "0.x.x",
+            "scope": "@arf"
+        }
+    },
+    "requiredCapabilities": [
+        "cloudant",
+        "conversation",
+        "simulatedInstrumentAnalytics"
+    ],
+    "requiredCapabilitiesURLs": {
+        "cloudant": "https://console.bluemix.net/catalog/services/cloudant-nosql-db",
+        "conversation": "https://console.bluemix.net/catalog/services/conversation",
+        "simulatedInstrumentAnalytics": "https://console.bluemix.net/docs/services/SimulatedInstrumentAnalytics"
+    },
+    "servicePlans": {
+        "cloudant": "Lite",
+        "conversation": "free",
+        "simulatedInstrumentAnalytics": "fss-scenario-analytics-service-free-plan"
+    },
+    "email": "cloud@us.ibm.com"
+}
