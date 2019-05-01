@@ -1,23 +1,23 @@
 declared-services:
-  Cloudant-us:
+  pwpm-cloudant:
     label: cloudantNoSQLDB
     plan: Lite
-  WatsonAssistant-us:
+  pwpm-assistant:
     label: conversation
     plan: free
-  Investment-Portfolio:
+  pwpm-investment-portfolio:
     label: fss-portfolio-service
     plan: fss-portfolio-service-free-plan
-  Simulated-Instrument-Analytics:
+  pwpm-simulated-instrument-analytics:
     label: fss-scenario-analytics-service
     plan: fss-scenario-analytics-service-free-plan
 applications:
 - services:
-   - Cloudant-us
-   - WatsonAssistant-us
-   - Investment-Portfolio
-   - Simulated-Instrument-Analytics
-  name: ljb-portfolio-chat-newbot
+   - pwpm-cloudant
+   - pwpm-assistant
+   - pwpm-investment-portfolio
+   - pwpm-simulated-instrument-analytics
+  name: personal-wealth-portfolio-mgt-bot
   path: .
   memory: 256M
   instances: 1
