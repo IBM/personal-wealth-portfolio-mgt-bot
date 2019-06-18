@@ -1,3 +1,9 @@
+# WARNING: This repository is no longer maintained :warning:
+
+> This repository will not be updated. This repository will be kept available in read-only mode. 
+
+---
+
 [![Build Status](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot.svg?branch=master)](https://travis-ci.org/IBM/personal-wealth-portfolio-mgt-bot)
 
 # Personal Wealth Portfolio Management Bot
